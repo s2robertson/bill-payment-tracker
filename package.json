@@ -1,0 +1,25 @@
+{
+  "name": "coding-bootcamp-project2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "nodemon server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "connect-session-sequelize": "^7.1.7",
+    "express": "^4.18.2",
+    "express-handlebars": "^7.0.7",
+    "express-session": "^1.17.3",
+    "mysql2": "^3.3.5",
+    "sequelize": "^6.32.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}
