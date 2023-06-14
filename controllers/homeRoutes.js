@@ -2,6 +2,10 @@ const router = require('express').Router();
 const { User, Credit, Bill, Payment } = require('../models');
 const withAuth = require('../utils/auth');
 
+router.get('/', (req, res) => {
+  res.render('home');
+})
+
 router.get('/', async (req, res) => {
     try {
       const dbCreditData = await Credit.findAll({
