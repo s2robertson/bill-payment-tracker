@@ -1,0 +1,3 @@
+DROP DATABASE IF EXISTS payments_db;
+
+CREATE DATABASE payments_db;
