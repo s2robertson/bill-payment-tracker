@@ -1,0 +1,29 @@
+[
+  {
+    "financial_institution": "Bank A",
+    "last_4_digits": 1234,
+    "next_payment_day": "2023-06-30",
+    "total_owing": 1000.00,
+    "minimum_due": 100.00,
+    "total_due": 1000.00,
+    "user_id": 1
+    },
+    {
+    "financial_institution": "Bank B",
+    "last_4_digits": 5678,
+    "next_payment_day": "2023-07-15",
+    "total_owing": 2000.00,
+    "minimum_due": 200.00,
+    "total_due": 2000.00,
+    "user_id": 2
+    },
+    {
+    "financial_institution": "Bank C",
+    "last_4_digits": 9012,
+    "next_payment_day": "2023-07-31",
+    "total_owing": 1500.00,
+    "minimum_due": 150.00,
+    "total_due": 1500.00,
+    "user_id": 3
+    }
+]

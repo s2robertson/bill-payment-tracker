@@ -1,0 +1,27 @@
+[
+  {
+    "description": "Payment for Invoice #12345",
+    "paid_amount": 50.00,
+    "payment_date": "2023-06-25",
+    "payment_method": "Credit Card",
+    "credit_id": 1,
+    "bill_id": null
+    },
+    {
+    "description": "Payment for Invoice #67890",
+    "paid_amount": 100.00,
+    "payment_date": "2023-07-10",
+    "payment_method": "Bank Transfer",
+    "credit_id": null,
+    "bill_id": 1
+    },
+    {
+    "description": "Payment for Invoice #54321",
+    "paid_amount": 75.00,
+    "payment_date": "2023-08-01",
+    "payment_method": "PayPal",
+    "credit_id": null,
+    "bill_id": 2
+    }
+  ]
+  
