@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Credit, Bill, Payment } = require('../../models');
+const { User, Credit, Bill, Payment } = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
@@ -174,3 +174,5 @@ router.get('/', async (req, res) => {
       res.status(500).json(err);
     }
   });
+
+  module.exports = router;
