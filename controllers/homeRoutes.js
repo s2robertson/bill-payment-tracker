@@ -4,6 +4,10 @@ const withAuth = require('../utils/auth');
 
 router.get('/', (req, res) => {
   res.render('home');
+});
+
+router.get('/register', (req, res) => {
+  res.render('register');
 })
 
 router.get('/', async (req, res) => {
