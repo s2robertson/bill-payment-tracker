@@ -1,0 +1,39 @@
+<div class="grid text-center">
+
+  <div class="g-row-6 g-row-md-4">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+      aria-haspopup="true" aria-expanded="false">
+      Select your Credit Card
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      {{#each items}}
+      <a class="dropdown-item" href="#">{{this}}</a>
+      {{/each}}
+    </div>
+  </div>
+
+  <div class="g-row-6 g-row-md-4">
+    details of credit
+    {{! Info to display }}
+    <button type="button" class="btn btn-success">Add a new Credit Card</button>
+  </div>
+
+  <div class="g-col-6 g-col-md-4">
+    Upcoming Payments
+    {{! Info to display }}
+    <button type="button" class="btn btn-success">Add a new upcoming payment for this credit card / This updated credit
+      card models</button>
+  </div>
+
+  <div class="g-col-6 g-col-md-4">Payment History
+    {{! Info to display }}
+    <button type="button" class="btn btn-success">Add a new payment</button>
+  </div>
+  
+</div>
+
+{{!--
+<script src="/js/loginScript.js"></script> --}}
+
+
+{{!-- https://getbootstrap.com/docs/5.3/layout/css-grid/ --}}
