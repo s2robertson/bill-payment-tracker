@@ -14,7 +14,7 @@ Credit.init({
     
     },
     last_4_digits: {
-        type: DataTypes.INT,
+        type: DataTypes.INTEGER,
       },
     next_payment_day: {
         type: DataTypes.DATE,

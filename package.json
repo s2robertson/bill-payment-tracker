@@ -1,30 +1,31 @@
 {
-  "name": "coding-bootcamp-project2",
+  "name": "crowd-funding",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "nodemon server.js"
+    "start": "node server.js",
+    "seed": "node seeds/seed.js",
+    "dev": "nodemon server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bcrypt": "^5.1.0",
-    "connect-session-sequelize": "^7.1.7",
-    "dotenv": "^16.1.4",
-    "express": "^4.18.2",
+    "bcrypt": "^5.0.0",
+    "connect-session-sequelize": "^7.0.4",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
     "express-handlebars": "^7.0.7",
-    "express-session": "^1.17.3",
+    "express-session": "^1.17.1",
     "mysql2": "^3.3.5",
-    "sequelize": "^6.32.0"
+    "sequelize": "^6.3.5"
   },
   "devDependencies": {
-    "eslint": "^8.42.0",
-    "eslint-config-prettier": "^8.8.0",
+    "eslint": "^7.12.1",
+    "eslint-config-prettier": "^6.15.0",
     "nodemon": "^2.0.22",
-    "prettier": "^2.8.8"
+    "prettier": "^2.1.2"
   }
 }
