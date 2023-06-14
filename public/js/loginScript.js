@@ -1,49 +1,38 @@
-function buildFormHandler({ fields, feedback, submitButton, submitParams: { path, method = 'POST' }, onSuccess }) {
-    submitButton.addEventListener('click', async (e) => {
-        e.preventDefault();
-        let errorMsg = '';
-        const values = {};
-        fields.forEach(([name, control, msg]) => {
-            const val = control.value.trim();
-            values[name] = val;
-            if (!val) {
-                errorMsg += msg + '  ';
-            }
-        });
-        if (errorMsg) {
-            feedback.textContent = errorMsg;
-            return;
-        }
-        try {
-            const result = await fetch(path, {
-                method,
-                body: JSON.stringify(values),
-                headers: { 'Content-Type': 'application/json' }
-            });
-            const data = await result.json();
-            if (result.ok) {
-                onSuccess(data);
-            } else {
-                feedback.textContent = data.msg;
-            }
-        } catch (err) {
-            feedback.textContent = err;
-        }
-    })
-}
+const loginUsernameInput = document.getElementById('loginUsername');
+const loginPasswordInput = document.getElementById('loginPassword');
+const loginFeedbackEl = document.getElementById('loginFormFeedback');
+const loginSubmitButton = document.getElementById('loginSubmit');
 
-const loginForm = {
-    fields: [
-        ['username', document.getElementById('loginUsername'), 'User name is required.'],
-        ['password', document.getElementById('loginPassword'), 'Password is required,']
-    ],
-    feedback: document.getElementById('loginFeedback'),
-    submitButton: document.getElementById('loginSubmit'),
-    submitParams: {
-        path: '',
-        method: 'POST'
-    },
-    onSuccess(data) {
-
+loginSubmitButton.addEventListener('click', async (e) => {
+    e.preventDefault();
+    const username = loginUsernameInput.value.trim();
+    const password = loginPasswordInput.value.trim();
+    let errorMsg = '';
+    if (!username) {
+        errorMsg += 'User name is required.  ';
     }
-}
+    if (!password) {
+        errorMsg += 'Password is required';
+    }
+    if (errorMsg) {
+        loginFeedbackEl.textContent = errorMsg;
+        return;
+    }
+    loginFeedbackEl.textContent = '';
+
+    try {
+        const result = await fetch('/api/users/login', {
+            method: 'POST',
+            body: JSON.stringify({ username, password }),
+            headers: { 'Content-Type': 'application/json' }
+        });
+        if (!result.ok) {
+            const { message } = await result.json();
+            loginFeedbackEl.textContent
+        } else {
+            location.assign('/dashboard');
+        }
+    } catch (err) {
+        loginFeedbackEl.textContent = err;
+    }
+})

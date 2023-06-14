@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-9 col-lg-8 col-xl-7 col-xxl-6">
         <form>
             <h2>Log in as an existing user</h2>
             <div class="my-3">
@@ -11,26 +11,11 @@
                 <input id="loginPassword" type="password" class="form-control">
             </div>
             <div class="mb-3">
-                <button id="loginSubmit" type="submit" class="btn">Log In</button>
+                <button id="loginSubmit" type="submit" class="btn btn-outline-dark">Log In</button>
             </div>
             <p id="loginFormFeedback" class="form-text"></p>
         </form>
     </div>
-    <div class="col-md-6" >
-        <form>
-            <h2>Sign up</h2>
-            <div class="my-3">
-                <label for="signupUsername" class="form-label">User name:</label>
-                <input id="signupUsername" type="text" class="form-control">
-            </div>
-            <div class="mb-3">
-                <label for="signupPassword" class="form-label">Password:</label>
-                <input id="signupPassword" type="password" class="form-control">
-            </div>
-            <div class="mb-3">
-                <button id="signupSubmit" type="submit" class="btn">Sign Up</button>
-            </div>
-            <p id="signupFormFeedback" class="form-text"></p>
-        </form>
-    </div>
 </div>
+<a href="/register" class="btn btn-outline-dark">Not registered yet?  Do that here!</a>
+<script src="/js/loginScript.js"></script>
