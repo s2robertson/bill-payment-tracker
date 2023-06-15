@@ -4,6 +4,8 @@ const paymentFeedbackEl = document.getElementById('paymentFormFeedback');
 const paymentSubmitButton = document.getElementById('paymentSubmitButton');
 const billIdHiddenInput = document.getElementById('billIdHidden');
 
+let modalOpenButton;
+
 paymentSubmitButton.addEventListener('click', async (e) => {
     e.preventDefault();
     const bill_id = billIdHiddenInput.value;
@@ -27,19 +29,36 @@ paymentSubmitButton.addEventListener('click', async (e) => {
         });
         if (!result.ok) {
             paymentFeedbackEl.textContent = 'Saving payment failed';
-            return;
+        } else {
+            const payment = await result.json();
+            modalOpenButton.previousElementSibling.append(buildListItemForPayment(payment));
+            makePaymentModal.hide();
         }
-        makePaymentModal.hide();
     } catch (err) {
         console.log(err);
         paymentFeedbackEl.textContent = 'Saving payment failed';
     }
 });
 
+function buildListItemForPayment(payment) {
+    const base = document.createElement('li');
+    base.classList.add('list-group-item');
+
+    const paidAmountEl = document.createElement('p');
+    paidAmountEl.textContent = `Amount paid: $${payment.paid_amount}`;
+    const paidOnEl = document.createElement('p');
+    const paidOnDate = new Date(payment.payment_date);
+    paidOnEl.textContent = `Paid on ${paidOnDate.toLocaleDateString()}`;
+
+    base.append(paidAmountEl, paidOnEl);
+    return base;
+}
+
 const makePaymentBillInfoEl = document.getElementById('makePaymentBillInfo');
 const launchButtons = document.querySelectorAll('button[data-bill-id]');
 launchButtons.forEach(button => {
     button.addEventListener('click', () => {
+        modalOpenButton = button;
         const dueDate = new Date(button.dataset.dueDate)
         makePaymentBillInfoEl.textContent = `${button.dataset.description}, due on ${dueDate.toLocaleDateString()}`
         billIdHiddenInput.value = button.dataset.billId;
