@@ -13,6 +13,7 @@ Payment.init(
     },
     payment_date: {
       type: DataTypes.DATE,
+      allowNull: false,
     },
     paid_amount: {
       type: DataTypes.DECIMAL,
@@ -21,6 +22,7 @@ Payment.init(
     
     bill_id: {
       type: DataTypes.INTEGER,
+      allowNull: false,
       references: {
         model: 'bill',
         key: 'id',
