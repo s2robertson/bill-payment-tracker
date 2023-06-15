@@ -30,7 +30,7 @@ router.post('/', withAuth, async (req, res) => {    //no WithAuth to test
     if (req.session) {                             /// req.session to test
         try {
             const dbPaymentData = await Payment.create({
-                payment_date: req.body.payment_date, 
+                payment_date: new Date(), 
                 paid_amount: req.body.paid_amount,
                 bill_id: req.body.bill_id,    
                 user_id: req.session.user_id,    ///to test user_id: req.body.user_id
