@@ -1,12 +1,24 @@
 {{#with user}}
-<h2>Your Bills:</h2>
-<ol class="list-group list-group-flush">
-  {{#each bills}}
-    <li class="list-group-item">
-      {{> billDetails}}
-    </li>
-  {{/each}}
-</ol>
+<section class="mb-3">
+  <h2>Upcoming Bills:</h2>
+  <ol class="list-group list-group-flush">
+    {{#each upcomingBills}}
+      <li class="list-group-item">
+        {{> billDetails}}
+      </li>
+    {{/each}}
+  </ol>
+</section>
+<section class="mb-3">
+  <h2>Bill History:</h2>
+  <ol class="list-group list-group-flush">
+    {{#each pastBills}}
+      <li class="list-group-item">
+        {{> billDetails}}
+      </li>
+    {{/each}}
+  </ol>
+</section>
 {{/with}}
 {{!--<div class="grid text-center">
   <div class="g-col-6 g-col-md-4">

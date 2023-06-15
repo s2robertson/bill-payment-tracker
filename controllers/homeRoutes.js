@@ -31,8 +31,14 @@ router.get('/dashboard', async (req, res) => {
       }
   
       const user = userData.get({ plain: true });
-      // const today = new Date();
-      console.log(JSON.stringify(user));
+      // split the bills into upcoming and past bills
+      const today = new Date();
+      let sliceIndex = user.bills.findIndex(bill => bill.due_date < today);
+      if (sliceIndex == -1) {
+        sliceIndex = user.bills.length;
+      }
+      user.upcomingBills = user.bills.slice(0, sliceIndex);
+      user.pastBills = user.bills.slice(sliceIndex);
       res.render('dashboard', { user })  ///;logged_in: req.session.logged_in
     } catch (err) {
       console.log(err);
