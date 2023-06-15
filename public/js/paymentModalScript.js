@@ -40,7 +40,8 @@ const makePaymentBillInfoEl = document.getElementById('makePaymentBillInfo');
 const launchButtons = document.querySelectorAll('button[data-bill-id]');
 launchButtons.forEach(button => {
     button.addEventListener('click', () => {
-        makePaymentBillInfoEl.textContent = `${button.dataset.description}, due on ${button.dataset.dueDate?.toLocaleDateString()}`
+        const dueDate = new Date(button.dataset.dueDate)
+        makePaymentBillInfoEl.textContent = `${button.dataset.description}, due on ${dueDate.toLocaleDateString()}`
         billIdHiddenInput.value = button.dataset.billId;
         makePaymentModal.show();
     })
