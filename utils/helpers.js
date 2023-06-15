@@ -7,6 +7,9 @@ module.exports = {
   },
 
   is_next_month: (date) => {
+    if (!date) {
+      return ""; 
+    }
     var currentDate = new Date();
     var nextMonthDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1);
   
