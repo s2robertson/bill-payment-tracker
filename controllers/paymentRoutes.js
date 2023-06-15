@@ -11,13 +11,13 @@ const withAuth = require('../utils/auth');
         include: [
           {
             model: Bill,
-            attributes: ['id', 'user_id']
+            attributes: ['id', 'description', 'total_due', 'user_id', 'due_date']
           },
         ]
       });
   
       const payments = dbPaymentData.map((payment) => payment.get({ plain: true }));
-      res.render('dashboard', {...payments });//, logged_in: req.session.logged_in
+      res.render('payment', {payments});//, logged_in: req.session.logged_in
       console.log(payments)
     } catch (err) {
       console.log(err);
@@ -27,7 +27,7 @@ const withAuth = require('../utils/auth');
 
 
 
-  router.get('/payment/:id', async (req, res) => {
+  router.get('/payments/:id', async (req, res) => {
     try {
       const dbPaymentData = await Payment.findOne({
         where: {
@@ -49,3 +49,6 @@ const withAuth = require('../utils/auth');
       res.status(500).json(err);
     }
   });
+
+  
+  module.exports = router;

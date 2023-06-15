@@ -83,7 +83,7 @@ router.get('/dashboard', async (req, res) => {
       });
   
       const bills = dbBillData.get({ plain: true });
-      res.render('bill', { ...bills}); ///logged_in: true
+      res.render('bill', { bills}); ///logged_in: true
     } catch (err) {
       console.log(err);
       res.status(500).json(err);
