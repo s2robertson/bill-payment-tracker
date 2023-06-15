@@ -20,6 +20,31 @@
   </ol>
 </section>
 {{/with}}
+<div id="paymentModal" class="modal" aria-hidden="true" aria-labelledby="">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5">Add Payment</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p id="makePaymentBillInfo"></p>
+        <input id="billIdHidden" type="hidden">
+        <form>
+          <div class="mb-3">
+            <label for="makePaymentAmount">Amount:</label>
+            <div class="input-group">
+              <span class="input-group-text">$</span>
+              <input id="paymentAmount" type="number" class="form-control" aria-label="Amount (to the nearest dollar)">
+            </div>
+          </div>
+          <p id="paymentFormFeedback" class="form-text"></p>
+          <button id="paymentSubmitButton" class="btn btn-outline-dark">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 {{!--<div class="grid text-center">
   <div class="g-col-6 g-col-md-4">
     <h2>Credit Cards</h2>
