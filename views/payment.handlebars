@@ -1,0 +1,53 @@
+<div class="grid text-center">
+
+  <div class="g-row-6 g-row-md-4">
+    <input type="text" name="daterange" value="06/12/2023 - 06/15/2023" />
+  </div>
+
+  <div class="g-row-6 g-row-md-4">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+      aria-haspopup="true" aria-expanded="false">
+      Select your Bill o Credit Card
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      {{#each items}}
+      <a class="dropdown-item" href="#######">{{this}}</a>
+      {{/each}}
+    </div>
+  </div>
+
+
+  <div class="g-col-6 g-col-md-4">Upcoming payments
+    {{! Info to display }}
+    <button type="button" class="btn btn-success">Add a upcoming payment</button>
+  </div>
+
+  <div class="g-col-6 g-col-md-4">Payments History
+    {{! Info to display }}
+  </div>
+</div>
+
+{{!--
+<script src="/js/loginScript.js"></script> --}}
+
+
+{{!-- https://getbootstrap.com/docs/5.3/layout/css-grid/ --}}
+
+
+{{!-- for the date picker
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+<script>
+  $(function () {
+    $('input[name="daterange"]').daterangepicker({
+      opens: 'left'
+    }, function (start, end, label) {
+      console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+    });
+  });
+</script>
+
+https://www.daterangepicker.com/#usage --}}

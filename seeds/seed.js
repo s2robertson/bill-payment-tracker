@@ -1,9 +1,8 @@
 const sequelize = require('../config/connection');
-const { User, Payment, Credit, Bill } = require('../models');
+const { User, Payment, Bill } = require('../models');
 
 const userData = require('./userData.json');
 const billData = require('./billData.json');
-const creditData = require('./creditData.json');
 const paymentData = require('./paymentData.json');
 
 const seedDatabase = async () => {
@@ -22,13 +21,6 @@ const seedDatabase = async () => {
       });
     }
 
-    for (const credit of creditData) {
-      await Credit.create({
-        ...credit,
-        // user_id: users[Math.floor(Math.random() * users.length)].id,
-        // post_id: Math.floor(Math.random() * billData.length) + 1,
-      });
-    }
 
     for (const payment of paymentData) {
       await Payment.create({

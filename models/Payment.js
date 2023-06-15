@@ -11,27 +11,14 @@ Payment.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    description: {
-      type: DataTypes.STRING,
-      allowNull: false,
+    payment_date: {
+      type: DataTypes.DATE,
     },
     paid_amount: {
       type: DataTypes.DECIMAL,
       allowNull: false,
     },
-    payment_date: {
-      type: DataTypes.DATE,
-    },
-    payment_method: {
-      type: DataTypes.STRING,
-    },
-    credit_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'credit',
-        key: 'id',
-      },
-    },
+    
     bill_id: {
       type: DataTypes.INTEGER,
       references: {
