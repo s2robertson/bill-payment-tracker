@@ -63,7 +63,7 @@ router.get('/dashboard', async (req, res) => {
   
   
 
-  router.get('/bill/:id', async (req, res) => {
+  /*router.get('/bill/:id', async (req, res) => {
     try {
       const dbBillData = await Bill.findOne({
         where: {
@@ -88,7 +88,7 @@ router.get('/dashboard', async (req, res) => {
       console.log(err);
       res.status(500).json(err);
     }
-  });
+  });*/
 
 
   module.exports = router;
