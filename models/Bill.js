@@ -9,18 +9,8 @@ Bill.init({
         primaryKey: true,
         autoIncrement: true
     },
-    company: {
+    description: {
         type: DataTypes.STRING,
-    
-    },
-    account_number: {
-        type: DataTypes.STRING,
-      },
-    next_payment_day: {
-        type: DataTypes.DATE,
-      },
-    total_owing: {
-        type: DataTypes.DECIMAL,
       },
     minimum_due: {
         type: DataTypes.DECIMAL,
@@ -28,9 +18,12 @@ Bill.init({
     total_due: {
         type: DataTypes.DECIMAL,
       },
+      due_date: {
+        type: DataTypes.DATE,
+      },
     user_id: {
         type: DataTypes.INTEGER,
-        allowNull: true,
+        allowNull: false,
         references: {
             model: 'user',
             key: 'id'

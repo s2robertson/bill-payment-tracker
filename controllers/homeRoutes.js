@@ -23,11 +23,12 @@ router.get('/', async (req, res) => {
       });
   
       const credits = dbCreditData.map(credit => credit.get({ plain: true }));
-      res.render('homepage', { credits, logged_in: req.session.logged_in });
+      res.render('dashboard', { credits })  ///;logged_in: req.session.logged_in
     } catch (err) {
       console.log(err);
       res.status(500).json(err);
     }
+    console.log(credits)
   });
 
   router.get('/', async (req, res) => {
@@ -51,7 +52,7 @@ router.get('/', async (req, res) => {
       });
   
       const bills = dbBillData.map(bill => bill.get({ plain: true }));
-      res.render('homepage', { bills, logged_in: req.session.logged_in });
+      res.render('dashboard', { bills, logged_in: req.session.logged_in });
     } catch (err) {
       console.log(err);
       res.status(500).json(err);
@@ -80,7 +81,7 @@ router.get('/', async (req, res) => {
       });
   
       const payments = dbPaymentData.map(payment => payment.get({ plain: true }));
-      res.render('homepage', { payments, logged_in: req.session.logged_in });
+      res.render('dashboard', { payments, logged_in: req.session.logged_in });
     } catch (err) {
       console.log(err);
       res.status(500).json(err);
