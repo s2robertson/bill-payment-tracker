@@ -1,28 +1,33 @@
-<div class="grid text-center">
-{{#each credits}}
-  <div class="g-col-6 g-col-md-4">
-    <h2>Credit Cards</h2>
-    <div class="row"> 
-      <p>{{financial_institution}} {{last_4_digits}} </p>
-      <p>{{total_due}} {{next_payment_day}} </p>
+
+  <div class="col-md-9 col-lg-8 col-xl-7 col-xxl-6">
+      <div class="g-col-6">
+        <h2>Bills</h2>
+          {{#each bills}}
+          <div class="col">
+            {{!-- {{#if is_next_month due_date}} --}}
+            <p>{{description}} has an upcoming payment for ${{total_due}} on {{format_date due_date}}</p>
+            {{!-- {{/if}} --}}
+          </div>
+        {{/each}}
+        <button type="button" class="btn btn-success">Add a new bill</button>
+      </div>
+  <div class="col-md-9 col-lg-8 col-xl-7 col-xxl-6">
+      <div class="g-col-6">
+        <h2>Payments</h2>
+        {{#each bills }}
+        {{#each payments}}
+        <div class="col">
+          <p>Your last payment for {{description}} was for ${{this.paid_amount}} on {{format_date
+            this.payment_date}}</p>
+        </div>
+        {{/each}}
+      </div>
+      {{/each}}
+      <button type="button" class="btn btn-success">Add a new payment</button>
     </div>
-    <button type="button" class="btn btn-success">Add a new credit card</button>
-  </div>
-{{/each}}
-  <div class="g-col-6 g-col-md-4">Bills
-    {{! Info to display }}
-    <button type="button" class="btn btn-success">Add a new bill</button>
   </div>
 
-  <div class="g-col-6 g-col-md-4">Payments
-    {{! Info to display }}
-    <button type="button" class="btn btn-success">Add a new payment</button>
-  </div>
-  
-</div>
-
-{{!--
-<script src="/js/loginScript.js"></script> --}}
 
 
-{{!-- https://getbootstrap.com/docs/5.3/layout/css-grid/ --}}
+
+    {{!-- https://getbootstrap.com/docs/5.3/layout/css-grid/ --}}
