@@ -32,7 +32,6 @@ router.post('/', async (req, res) => {
             const dbUserData = await User.create({
                 username: req.body.username, 
                 email: req.body.email,
-                phone_number: req.body.phone_number,
                 password: req.body.password
             });
             res.json(dbUserData);
@@ -49,7 +48,6 @@ router.put('/:id', withAuth, async (req, res) => {
         const dbUserData = await User.update(
             {
                 email: req.body.email,
-                phone_number: req.body.phone_number,
                 password: req.body.password
             },
             {

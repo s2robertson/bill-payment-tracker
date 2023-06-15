@@ -29,13 +29,6 @@ User.init(
         isEmail: true,
       },
     },
-    phone_number: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        isNumeric: true
-      },
-    },
     password: {
       type: DataTypes.STRING,
       allowNull: false,
