@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Credit, Bill, Payment } = require('../models');
+const { User, Bill, Payment } = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', (req, res) => {
@@ -10,33 +10,34 @@ router.get('/register', (req, res) => {
   res.render('register');
 })
 
-router.get('/', async (req, res) => {
+router.get('/dashboard', async (req, res) => {
     try {
-      const dbCreditData = await Credit.findAll({
-        attributes: [],
-        include: [
-          {
+      const userData = await User.findByPk(req.session.user_id, {
+        attributes: {
+          exclude: ['password']
+        },
+        include: {
+          model: Bill,
+          order: [['due_date', 'DESC']],
+          include: {
             model: Payment,
-            attributes: ['id', 'description', 'paid_amount', 'payment_day', 'payment_method', 'credit_id'],
-            include: {
-              model: User,
-              attributes: ['username']
-            }
-          },
-          {
-            model: User,
-            attributes: ['username']
+            order: [['payment_date', 'DESC']]
           }
-        ]
+        }
       });
+
+      if (!userData) {
+        return res.redirect('/');
+      }
   
-      const credits = dbCreditData.map(credit => credit.get({ plain: true }));
-      res.render('dashboard', { credits })  ///;logged_in: req.session.logged_in
+      const user = userData.get({ plain: true });
+      // const today = new Date();
+      console.log(JSON.stringify(user));
+      res.render('dashboard', { user })  ///;logged_in: req.session.logged_in
     } catch (err) {
       console.log(err);
       res.status(500).json(err);
     }
-    console.log(credits)
   });
 
   router.get('/', async (req, res) => {

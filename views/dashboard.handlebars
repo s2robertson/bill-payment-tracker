@@ -1,5 +1,14 @@
-<div class="grid text-center">
-{{#each credits}}
+{{#with user}}
+<h2>Your Bills:</h2>
+<ol class="list-group list-group-flush">
+  {{#each bills}}
+    <li class="list-group-item">
+      {{> billDetails}}
+    </li>
+  {{/each}}
+</ol>
+{{/with}}
+{{!--<div class="grid text-center">
   <div class="g-col-6 g-col-md-4">
     <h2>Credit Cards</h2>
     <div class="row"> 
@@ -8,7 +17,7 @@
     </div>
     <button type="button" class="btn btn-success">Add a new credit card</button>
   </div>
-{{/each}}
+
   <div class="g-col-6 g-col-md-4">Bills
     {{! Info to display }}
     <button type="button" class="btn btn-success">Add a new bill</button>
@@ -19,10 +28,9 @@
     <button type="button" class="btn btn-success">Add a new payment</button>
   </div>
   
-</div>
+</div>--}}
 
-{{!--
-<script src="/js/loginScript.js"></script> --}}
+{{!--<script src="/js/loginScript.js"></script>
 
 
-{{!-- https://getbootstrap.com/docs/5.3/layout/css-grid/ --}}
+{{ https://getbootstrap.com/docs/5.3/layout/css-grid/ --}}
