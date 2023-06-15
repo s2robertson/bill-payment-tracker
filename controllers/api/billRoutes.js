@@ -30,12 +30,10 @@ router.post('/', withAuth, async (req, res) => {    //no WithAuth to test
     if (req.session) {                             /// req.session to test
         try {
             const dbBillData = await Bill.create({
-                company: req.body.company,
-                account_number: req.body.account_number,
-                next_payment_day: req.body.next_payment_day, 
-                total_owing: req.body.total_owing,
+                description: req.body.description,
                 minimum_due: req.body.minimum_due,
-                total_due: req.body.total_due,
+                total_due: req.body. total_due, 
+                due_date: req.body.due_date,
                 user_id: req.session.user_id,    ///to test user_id: req.body.user_id
                  
             });
@@ -52,10 +50,9 @@ router.put('/:id', withAuth, async (req, res) => { //no WithAuth to test
     try {                                         /// maybe  before try if (req.session) 
         const dbBillData = await Bill.update(
             {
-                next_payment_day: req.body.next_payment_day,
+                description: req.body.description,
                 total_owing: req.body.total_owing,
-                minimum_due: req.body.minimum_due,
-                total_due: req.body.total_due,
+                due_date: req.body.due_date,
             },
             {
                 where: {

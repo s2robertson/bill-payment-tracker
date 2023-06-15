@@ -11,6 +11,7 @@ Bill.init({
     },
     description: {
         type: DataTypes.STRING,
+        allowNull: false,
       },
     minimum_due: {
         type: DataTypes.DECIMAL,
@@ -18,7 +19,7 @@ Bill.init({
     total_due: {
         type: DataTypes.DECIMAL,
       },
-      due_date: {
+    due_date: {
         type: DataTypes.DATE,
       },
     user_id: {
