@@ -1,3 +1,29 @@
+  <div class="col-md-9 col-lg-8 col-xl-7 col-xxl-6">
+      <div class="g-col-6">
+        <h2>Upcoming payments</h2>
+          {{#each payments}}
+          <div class="col">
+            {{!-- {{#if is_next_month due_date}} --}}
+            <p>{{bill.description}} has an upcoming payment for ${{bill.total_due}} on {{format_date due_date}}</p>
+            {{!-- {{/if}} --}}
+          </div>
+        {{/each}}
+        <button type="button" class="btn btn-success">Add a new bill</button>
+      </div>
+  <div class="col-md-9 col-lg-8 col-xl-7 col-xxl-6">
+      <div class="g-col-6">
+        <h2>Payment History</h2>
+        {{#each payments}}
+        <div class="col">
+          <p>Your last payment for {{bill.description}} was for ${{this.paid_amount}} on {{format_date
+            this.payment_date}}</p>
+        </div>
+        {{/each}}
+      </div>
+    
+      <button type="button" class="btn btn-success">Add a new payment</button>
+    </div>
+  </div>
 
 {{!--
 <script src="/js/loginScript.js"></script> --}}
