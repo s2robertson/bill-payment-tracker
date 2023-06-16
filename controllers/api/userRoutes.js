@@ -34,6 +34,8 @@ router.post('/', async (req, res) => {
                 email: req.body.email,
                 password: req.body.password
             });
+            req.session.user_id = dbUserData.id;
+            req.session.logged_in = true;
             res.json(dbUserData);
         } catch (err) {
             console.log(err);
@@ -101,13 +103,9 @@ router.post('/login', async (req, res) => {
   });
   
   router.post('/logout', (req, res) => {
-    if (req.session.logged_in) {
-      req.session.destroy(() => {
-        res.redirect('/');
-      });
-    } else {
-      res.status(404).end();
-    }
+    req.session.destroy(() => {
+      res.json({ message: 'You are logged out' });
+    });
   });
   
   module.exports = router;

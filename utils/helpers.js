@@ -6,6 +6,14 @@ module.exports = {
     return date.toLocaleDateString();
   },
 
+  format_date_iso(date) {
+    if (!date) {
+      return '';
+    }
+    let d = typeof date == 'string' ? new Date(date) : date;
+    return d.toISOString().substring(0, 10);
+  },
+
   is_next_month: (date) => {
     if (!date) {
       return ""; 
