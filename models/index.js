@@ -21,5 +21,10 @@ Payment.belongsTo(Bill, {
 });
 
 
+Payment.belongsTo(User, {
+  through: Bill,
+  foreignKey: 'user_id',
+  });
+
 
 module.exports = { User, Bill, Payment };

@@ -6,6 +6,7 @@ const {Op} = require('sequelize');
 
 
 
+
   router.get('/payments', async (req, res) => {
     try {
       const dbPaymentData = await Payment.findAll({
@@ -44,7 +45,7 @@ const {Op} = require('sequelize');
         ]
       });
   
-      const payments = dbPaymentData.get({ plain: true });
+      const payments = dbPaymentData.map((payment) => payment.get({ plain: true }));
       res.render('payment', {payments}); ///logged_in: true
     } catch (err) {
       console.log(err);
@@ -53,22 +54,26 @@ const {Op} = require('sequelize');
   });
 
 
-
-  router.get('/query/:startDate/:endDate', async (req, res) => {
+//  id = req.session.id to replace the 1 in the url ////
+  router.get('/query/1/:startDate/:endDate', async (req, res) => {
     try {
-      const startDate = new Date(req.query.startDate);
-      const endDate = new Date(req.query.endDate);
+      const startDate = new Date(req.params.startDate);
+      const endDate = new Date(req.params.endDate);
       if (!startDate || !endDate) {
         return res.status(400).json({ error: 'Invalid date range' });
       }
-  
+      // const id: req.session.id
+      
       const dbPaymentData = await Payment.findAll({
         where: {
           payment_date: { [Op.between]: [startDate, endDate] },
         },
+        include : {
+          model:Bill
+          },
       });
   
-      const payments = dbPaymentData.get({ plain: true });
+      const payments = dbPaymentData.map((payment) => payment.toJSON()); 
       res.render('paymentFilter', {payments}); ///logged_in: true
       console.log (payments)
     } catch (err) {

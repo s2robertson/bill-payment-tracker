@@ -12,7 +12,7 @@ Payment.init(
       autoIncrement: true,
     },
     payment_date: {
-      type: DataTypes.DATE,
+      type: DataTypes.DATEONLY,
       allowNull: false,
     },
     paid_amount: {

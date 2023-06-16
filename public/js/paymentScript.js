@@ -38,50 +38,19 @@ const startD = document.getElementById('from');
 const endD = document.getElementById('to');
 const dateBtn = document.getElementById('dateBtn');
 
-const outputContainer = document.getElementById('outputContainer');
 
 
-
-dateBtn.addEventListener('click', async (e) => {
+dateBtn.addEventListener('click', (e) => {
   e.preventDefault();
 
-  try {
-    const startDate = startD.value.trim();
-    const endDate = endD.value.trim();
+  const startDate = startD.value.trim();
+  const endDate = endD.value.trim();
 
-    // const id = req.session.id to replace the 1 in the url
-    const url = `/api/query/1/${startDate}/${endDate}`; 
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error('Network response was not OK');
-    }
-    const data = await response.json();
-    console.log(data);
-  } catch (error) {
-    console.error(error);
-  }
+  // ****const id = req.session.id to replace the 1 in the URL
+  const url = `/query/1/${startDate}/${endDate}`;
+
+  window.location.href = url;
+
+  
 });
 
-
-// dateBtn.addEventListener('click', async (e) => {
-//   e.preventDefault();
-
-//   try {
-//     const startDate = startD.value.trim();
-//     const endDate = endD.value.trim();
-//     const url = `/api/query/1/${startDate}/${endDate}`;
-//     const response = await fetch(url);
-
-//     if (!response.ok) {
-//       throw new Error('Network response was not OK');
-//     }
-
-//     const data = await response.json();
-//     const renderedHTML = template({ payments: data });
-
-//     const paymentFilterContainer = document.getElementById('paymentFilterContainer');
-//     paymentFilterContainer.innerHTML = renderedHTML;
-//   } catch (error) {
-//     console.error(error);
-//   }
-// });
