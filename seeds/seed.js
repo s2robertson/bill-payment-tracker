@@ -4,31 +4,19 @@ const { User, Payment, Bill } = require('../models');
 const userData = require('./userData.json');
 const billData = require('./billData.json');
 const paymentData = require('./paymentData.json');
+const reminderData = require('./reminderData.json');
 
 const seedDatabase = async () => {
   try {
     await sequelize.sync({ force: true });
 
-    const users = await User.bulkCreate(userData, {
-      individualHooks: true,
-      returning: true,
-    });
+    await User.bulkCreate(userData);
 
-    for (const bill of billData) {
-      await Bill.create({
-        ...bill,
-        // user_id: users[Math.floor(Math.random() * users.length)].id,
-      });
-    }
+    await Bill.bulkCreate(billData);
 
+    await Payment.bulkCreate(paymentData);
 
-    for (const payment of paymentData) {
-      await Payment.create({
-        ...payment,
-        // user_id: users[Math.floor(Math.random() * users.length)].id,
-        // post_id: Math.floor(Math.random() * billData.length) + 1,
-      });
-    }
+    await Reminder.bulkCreate(reminderData);
 
     console.log('Database seeded successfully!');
     process.exit(0);
