@@ -15,11 +15,12 @@
 <body>
     <header class="container d-flex flex-column flex-md-row align-items-center p-4">
         <h1 class="flex-grow-1">Payment Tracker</h1>
-        <a href="/" class="btn">Home</a>
-        <a href="/login" class="btn">Login</a>
+        <a href="/dashboard" class="btn {{#if user_id}}d-block{{else}}d-none{{/if}}">Home</a>
+        <button id="logoutButton" class="btn {{#if user_id}}d-block{{else}}d-none{{/if}}">Log Out</button>
     </header>
     <main class="container p-4">
         {{{body}}}
     </main>
+    <script src="/js/logoutScript.js"></script>
 </body>
 </html>
