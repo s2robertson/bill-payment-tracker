@@ -1,0 +1,24 @@
+<h3>{{description}}</h3>
+<p>Due on {{format_date due_date}}</p>
+<p>Total due: ${{total_due}}</p>
+<p>Minimum due: ${{minimum_due}}</p>
+{{#if payments}}
+    <h4>Payments:</h4>
+    <ol class="list-group">
+        {{#each payments}}
+            <li class="list-group-item">
+                <p>Amount paid: ${{paid_amount}}</p>
+                <p>Paid on {{format_date payment_date}}</p>
+            </li>
+        {{/each}}
+    </ol>
+{{/if}}
+<button type="button" class="btn btn-success mt-3" 
+    data-payment-bill-id="{{id}}"
+    data-description="{{description}}"
+    data-due-date="{{due_date}}"
+>Add a payment</button>
+<button type="button" class="btn btn-success mt-3"
+    data-reminder-bill-id="{{id}}"
+    data-due-date="{{due_date}}"
+>Set a reminder</button>
