@@ -1,6 +1,5 @@
 {{#with user}}
 <h2>Bills</h2>
-<a href="/bill/new" class="btn btn-success mt-3">Add a new bill</a>
 <ol class="list-group list-group-flush">
   {{#each bills}}
   <li class="list-group-item py-3">
@@ -8,6 +7,9 @@
   </li>
   {{/each}}
 </ol>
+<div id="btn-new-bill">
+<a href="/bill/new" class="btn btn-success mt-3">Add a new bill</a>
+</div>
 {{/with}}
 <div id="paymentModal" class="modal" aria-hidden="true" aria-labelledby="">
   <div class="modal-dialog">

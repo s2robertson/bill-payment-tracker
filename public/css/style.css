@@ -1,4 +1,11 @@
 /* Custom CSS styles */
+:root {
+  --color-box: #c5bdbd; /* Declare the variable and assign a value */
+}
+
+p {
+  font-size: 16px;
+}
 body {
   font-family: 'Share Tech', sans-serif;
     margin: 0;
@@ -19,6 +26,10 @@ body {
     /* background: #1626FC; */
     background: linear-gradient(to right, #1626FC 20%, #CF480E 78%);
     -webkit-background-clip: text;
+    -moz-background-clip: text; /* Firefox */
+    -ms-background-clip: text; /* Internet Explorer */
+    -o-background-clip: text; /* Opera */
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     
   }
@@ -146,4 +157,44 @@ body {
     margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 5px;
+  }
+
+  h2 {
+    margin: 0;
+    font-weight: bold;
+    margin: 20px;
+    font-size: 40px;
+    /* background: #1626FC; */
+    background: linear-gradient(to right, #1626FC 20%, #CF480E 78%);
+    -webkit-background-clip: text;
+    -moz-background-clip: text; /* Firefox */
+    -ms-background-clip: text; /* Internet Explorer */
+    -o-background-clip: text; /* Opera */
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+    
+  }
+
+  .list-group{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    text-align: center;
+  }
+
+  /* #edit-btn {
+    margin-left: 17px;
+  } */
+
+  #btn-new-bill{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+
+  .list-group-item {
+    background-color: var(--color-box)
   }

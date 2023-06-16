@@ -2,7 +2,7 @@
 <p>Due on {{format_date due_date}}</p>
 <p>Total due: ${{total_due}}</p>
 <p>Minimum due: ${{minimum_due}}</p>
-<a href="/bill/{{id}}" class="btn btn-success mb-3">Edit Bill</a>
+<a href="/bill/{{id}}" class="btn btn-success mb-3" id="edit-btn">Edit Bill</a>
 {{#if payments}}
     <h4>Payments:</h4>
     <ol class="list-group">
