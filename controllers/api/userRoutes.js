@@ -103,13 +103,9 @@ router.post('/login', async (req, res) => {
   });
   
   router.post('/logout', (req, res) => {
-    if (req.session.logged_in) {
-      req.session.destroy(() => {
-        res.redirect('/');
-      });
-    } else {
-      res.status(404).end();
-    }
+    req.session.destroy(() => {
+      res.json({ message: 'You are logged out' });
+    });
   });
   
   module.exports = router;
