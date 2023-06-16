@@ -1,0 +1,149 @@
+/* Custom CSS styles */
+body {
+  font-family: 'Share Tech', sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  
+  header {
+    background-color: #f8f9fa;
+  
+  }
+  
+  header h1 {
+    margin: 0;
+    font-weight: bold;
+    margin: 20px;
+    font-size: 50px;
+    /* background: #1626FC; */
+    background: linear-gradient(to right, #1626FC 20%, #CF480E 78%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    
+  }
+  
+  header .btn {
+    margin-left: 10px;
+  }
+  
+  main {
+    padding-top: 20px;
+  }
+
+  .container {
+    margin: 0 auto;
+    background-color: white;
+    /* padding: 10px; */
+    border-color: gray;
+    border-radius: 5px;
+    
+  }
+  
+  .p-4{
+    padding: 0!important;
+  }
+  header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  
+  nav {
+    display: flex;
+  }
+  nav-links {
+    gap: 10px;
+  }
+  
+  nav a {
+    color: rgb(255, 149, 0)!important;
+    text-decoration: none;
+    padding: 8px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    margin: 5px;
+    font-size: 18px;
+  }
+  
+  nav a:hover {
+    background-color: blue!important;
+    font-size: 18px;
+  }
+
+  nav a:active {
+  
+    font-size: 15px;
+  }
+
+  .navBtn {
+    display: flex;
+    list-style: none;
+  }
+  
+  .row {
+    justify-content: space-evenly;
+  }
+
+  .col {
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  #btn-register-box {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    margin-left: 30px;
+  }
+
+  .btn:hover {
+    background-color: blue!important;
+
+   
+  }
+
+  .btn {
+    background-color: rgb(221, 182, 127)!important;
+    transition: font-size 0.3s ease;
+  }
+
+  .btn:active {
+    font-size: 13px;
+  }
+
+  h2 {
+    color: rgb(35, 35, 74);
+    padding: 10px;
+    border-radius: 5px;
+  }
+
+  form {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #dbd8d8;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  form label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
+  form input[type="text"],
+  form input[type="email"],
+  form textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
