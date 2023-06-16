@@ -32,6 +32,7 @@ router.get('/:id', async (req, res) => {
 
 
 router.post('/', withAuth, async (req, res) => {    //no WithAuth to test
+
   if (req.session) {                             /// req.session to test
     try {
       const dbPaymentData = await Payment.create({
