@@ -51,8 +51,9 @@ router.put('/:id', withAuth, async (req, res) => { //no WithAuth to test
         const dbBillData = await Bill.update(
             {
                 description: req.body.description,
-                total_owing: req.body.total_owing,
+                total_due: req.body.total_due,
                 due_date: req.body.due_date,
+                minimum_due: req.body.minimum_due
             },
             {
                 where: {

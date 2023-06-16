@@ -59,36 +59,34 @@ router.get('/dashboard', async (req, res) => {
   }
 });
 
-
+router.get('/bill/new', withAuth, (req, res) => {
+  res.render('editBill');
+});
   
-  
-
-  /*router.get('/bill/:id', async (req, res) => {
-    try {
-      const dbBillData = await Bill.findOne({
-        where: {
-            id: req.params.id
-        },
-        attributes: ['id', 'description', 'minimum_due', 'total_due', 'due_date'],
-        include: [
-          {
-            model: Payment,
-            attributes: ['id', 'description', 'paid_amount', 'payment_date', 'bill_id'],
-          },
-          {
-            model: User,
-            attributes: ['username']
+router.get('/bill/:id', withAuth, async (req, res) => {
+  try {
+    const billData = await Bill.findByPk(req.params.id, {
+      include: [
+        {
+          model: User,
+          attributes: ['id'],
+          where: {
+            id: req.session.user_id
           }
-        ]
-      });
-  
-      const bills = dbBillData.get({ plain: true });
-      res.render('bill', { bills}); ///logged_in: true
-    } catch (err) {
-      console.log(err);
-      res.status(500).json(err);
+        }
+      ]
+    });
+    if (!billData) {
+      res.redirect('/dashboard');
     }
-  });*/
+
+    const bill = billData.get({ plain: true });
+    res.render('editBill', { bill }); ///logged_in: true
+  } catch (err) {
+    console.log(err);
+    res.redirect('/dashboard');
+  }
+});
 
 
   module.exports = router;
