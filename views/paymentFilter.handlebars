@@ -1,38 +1,24 @@
-<div class="col-md-9 col-lg-8 col-xl-7 col-xxl-6">
-  <div>
-  <label for="from">From</label>
-  <input type="text" id="from" name="from">
-  <label for="to">to</label>
-  <input type="text" id="to" name="to">
-  <button type="button" class="btn btn-success" id="dateBtn">Search</button>
 
-  </div>
-  <div class="g-col-6">
-    <h2>Upcoming payments</h2>
-    {{#each payments}}   
-        <div class="col">
-          <p>{{bill.description}} has an upcoming payment for ${{bill.total_due}} on {{format_date due_date}}</p>
-        </div>
-  {{else}}
-       <p>No data</p>
-   
-    {{/each}}
-    <button type="button" class="btn btn-success">Add a new bill</button>
-  </div>
-  <div class="col-md-9 col-lg-8 col-xl-7 col-xxl-6">
-    <div class="g-col-6">
-      <h2>Payment History</h2>
-      {{#each payments}}
-        
-          <div class="col">
-            <p>Your last payment for {{bill.description}} was for ${{this.paid_amount}} on {{format_date this.payment_date}}</p>
-          </div>
-       
-      {{/each}}
+<div class="col-md-9 col-lg-8 col-xl-7 col-xxl-6" id="paymentFilterContainer">
+    <div>
+      <label for="from">From</label>
+      <input type="text" id="from" name="from" class="datepicker-input">
+      <label for="to">to</label>
+      <input type="text" id="to" name="to" class="datepicker-input">
     </div>
-    <button type="button" class="btn btn-success">Add a new payment</button>
+    <div class="g-col-6">
+      <h2>FILTER</h2>
+      {{#each payments}}
+      <div class="col">
+        <p>{{bill.description}} has an upcoming payment for ${{bill.total_due}} on {{format_date due_date}}</p>
+      </div>
+      {{else}}
+      <p>No data</p>
+      {{/each}}
+      <button type="button" class="btn btn-success">Add a new bill</button>
+    </div>
   </div>
-</div>
+
 
 
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
