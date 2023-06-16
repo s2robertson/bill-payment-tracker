@@ -1,29 +1,21 @@
 
 <div class="col-md-9 col-lg-8 col-xl-7 col-xxl-6" id="paymentFilterContainer">
-    <div>
-      <label for="from">From</label>
-      <input type="text" id="from" name="from" class="datepicker-input">
-      <label for="to">to</label>
-      <input type="text" id="to" name="to" class="datepicker-input">
-    </div>
-    <div class="g-col-6">
-      <h2>FILTER</h2>
+   <div class="col-md-9 col-lg-8 col-xl-7 col-xxl-6">
+      <h2 id="picker-date">Payment History</h2>
       {{#each payments}}
-      <div class="col">
-        <p>{{bill.description}} has an upcoming payment for ${{bill.total_due}} on {{format_date due_date}}</p>
-      </div>
-      {{else}}
-      <p>No data</p>
+          <div class="col">
+            <p>Your last payment for {{bill.description}} was for ${{this.paid_amount}} on {{ this.payment_date}}</p>
+          </div>
       {{/each}}
-      <button type="button" class="btn btn-success">Add a new bill</button>
     </div>
+      <button type="button" class="btn btn-success">Add a new payment</button>
   </div>
 
 
 
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-<script src="/js/paymentScript.js"></script> 
+<script src="/js/filterScript.js"></script> 
 
 
 {{!-- https://getbootstrap.com/docs/5.3/layout/css-grid/ --}}

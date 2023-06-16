@@ -23,6 +23,11 @@ Bill.hasMany(Reminder, {
   foreignKey: 'bill_id'
 });
 
+Payment.belongsTo(User, {
+  through: Bill,
+  foreignKey: 'user_id',
+  });
+
 Reminder.belongsTo(Bill, {
   foreignKey: 'bill_id'
 });

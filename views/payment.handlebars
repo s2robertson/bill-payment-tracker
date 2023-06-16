@@ -11,7 +11,7 @@
     <h2>Upcoming payments</h2>
     {{#each payments}}   
         <div class="col">
-          <p>{{bill.description}} has an upcoming payment for ${{bill.total_due}} on {{format_date due_date}}</p>
+          <p>{{bill.description}} has an upcoming payment for ${{bill.total_due}} on {{ due_date}}</p>
         </div>
   {{else}}
        <p>No data</p>
@@ -25,7 +25,7 @@
       {{#each payments}}
         
           <div class="col">
-            <p>Your last payment for {{bill.description}} was for ${{this.paid_amount}} on {{format_date this.payment_date}}</p>
+            <p>Your last payment for {{bill.description}} was for ${{this.paid_amount}} on {{ this.payment_date}}</p>
           </div>
        
       {{/each}}

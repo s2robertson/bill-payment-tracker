@@ -51,27 +51,28 @@ const {Op} = require('sequelize');
 //   }
 // });
 
-router.get('/:id/:startDate/:endDate', async (req, res) => {
+router.get('/1/:startDate/:endDate', async (req, res) => {  /// CHANGE /1/ for :id
     try {
-      const startDate = new Date(req.body.startDate);
-      const endDate = new Date(req.body.endDate);
+      const startDate = new Date(req.params.startDate);
+      const endDate = new Date(req.params.endDate);
+      ///const id   req.session.id -
+      console.log(endDate, startDate, 'endDATE XXXX')
       if (!(startDate) || !(endDate)) {
         return res.status(400).json({ error: 'Invalid date range' });
       }
-      const dbPaymentData = await Bill.findAll({
+      const dbPaymentData = await Payment.findAndCountAll({
         where: {
-            id: req.params.id,
+              payment_date: {[Op.between]: [startDate, endDate]}
           },
-          include: {
-            model: Payment,
-            where: {
-                payment_date: {[Op.between]: [startDate, endDate]}
-            }
+          include : {
+          model:Bill
           },
-          include: {
-            model: User
-          },
-
+          // // include: {
+          // //   model: User,
+          // //   where: {
+          // //     id: req.params.id,
+          //   // },
+          // },
       });
   
       res.json(dbPaymentData);
