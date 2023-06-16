@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const {User}  = require('../../models');
 const { withApiAuth } = require('../../utils/auth');
+const handleSequelizeError = require('../../utils/sequelizeErrorHandler');
 
 router.get('/', async (req, res) => {
     try {
@@ -39,7 +40,12 @@ router.post('/', async (req, res) => {
             res.json(dbUserData);
         } catch (err) {
             console.log(err);
-            res.status(400).json(err);
+            const sequelizeError = handleSequelizeError(err);
+            if (sequelizeError) {
+              res.status(400).json({ message: sequelizeError });
+            } else {
+              res.status(500).json(err);
+            }
         }
     }
 });
@@ -65,7 +71,12 @@ router.put('/:id', withApiAuth, async (req, res) => {
         res.json(dbUserData);
     } catch (err) {
         console.log(err);
-        res.status(500).json(err);
+        const sequelizeError = handleSequelizeError(err);
+        if (sequelizeError) {
+          res.status(400).json({ message: sequelizeError });
+        } else {
+          res.status(500).json(err);
+        }
     }
 });
 
@@ -76,7 +87,7 @@ router.post('/login', async (req, res) => {
   
       if (!userData) {
         res
-          .status(400)
+          .status(403)
           .json({ message: 'Incorrect email or password, please try again' });
         return;
       }
@@ -85,7 +96,7 @@ router.post('/login', async (req, res) => {
   
       if (!validPassword) {
         res
-          .status(400)
+          .status(403)
           .json({ message: 'Incorrect email or password, please try again' });
         return;
       }
@@ -98,7 +109,8 @@ router.post('/login', async (req, res) => {
       });
   
     } catch (err) {
-      res.status(400).json(err);
+      console.log(err);
+      res.status(400).json({ message: 'Login failed (error)' });
     }
   });
   
