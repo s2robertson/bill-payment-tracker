@@ -1,20 +1,23 @@
 const router = require('express').Router();
 const { User, Bill, Payment } = require('../models');
-const withAuth = require('../utils/auth');
+const { withPageAuth } = require('../utils/auth');
 const moment = require('moment');
 const {Op} = require('sequelize');
 
 
 
 
-  router.get('/payments', async (req, res) => {
+  router.get('/payments', withPageAuth, async (req, res) => {
     try {
       const dbPaymentData = await Payment.findAll({
         attributes: ['id', 'paid_amount', 'payment_date', 'bill_id'],
         include: [
           {
             model: Bill,
-            attributes: ['id', 'description', 'total_due', 'user_id', 'due_date']
+            attributes: ['id', 'description', 'total_due', 'user_id', 'due_date'],
+            where: {
+              user_id: req.session.user_id
+            }
           },
         ]
       });
@@ -30,17 +33,17 @@ const {Op} = require('sequelize');
 
 
 
-  router.get('/payments/:id', async (req, res) => {
+  router.get('/payments/:id', withPageAuth, async (req, res) => {
     try {
-      const dbPaymentData = await Payment.findOne({
-        where: {
-            id: req.params.id
-        },
+      const dbPaymentData = await Payment.findByPk(req.params.id, {
         attributes: ['id', 'paid_amount', 'payment_date', 'bill_id'],
         include: [
           {
             model: Bill,
-            attributes: ['id', 'description', 'minimum_due', 'total_due', 'due_date', 'user_id']
+            attributes: ['id', 'description', 'minimum_due', 'total_due', 'due_date', 'user_id'],
+            where: {
+              user_id: req.session.user_id
+            }
           },
         ]
       });
@@ -55,7 +58,7 @@ const {Op} = require('sequelize');
 
 
 //  id = req.session.id to replace the 1 in the url ////
-  router.get('/query/1/:startDate/:endDate', async (req, res) => {
+  router.get('/query/1/:startDate/:endDate', withPageAuth, async (req, res) => {
     try {
       const startDate = new Date(req.params.startDate);
       const endDate = new Date(req.params.endDate);
@@ -69,8 +72,11 @@ const {Op} = require('sequelize');
           payment_date: { [Op.between]: [startDate, endDate] },
         },
         include : {
-          model:Bill
-          },
+          model: Bill,
+          where: {
+            user_id: req.session.user_id
+          }
+        },
       });
   
       const payments = dbPaymentData.map((payment) => payment.toJSON()); 

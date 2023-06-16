@@ -37,7 +37,6 @@ billSubmitButton.addEventListener('click', async (e) => {
     billFormFeedbackEl.textContent = '';
 
     try {
-        console.log(`Beginning fetch`);
         const result = await fetch(path, {
             method,
             body: JSON.stringify({ description, due_date, total_due, minimum_due }),

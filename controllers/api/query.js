@@ -1,8 +1,8 @@
 
 const router = require('express').Router();
 const { Payment, User, Bill } = require('../../models');
-const withAuth = require('../../utils/auth');
-var Sequelize = require('sequelize');
+const { withApiAuth } = require('../../utils/auth');
+// var Sequelize = require('sequelize');
 const {Op} = require('sequelize');
 
 
@@ -51,7 +51,7 @@ const {Op} = require('sequelize');
 //   }
 // });
 
-router.get('/1/:startDate/:endDate', async (req, res) => {  /// CHANGE /1/ for :id
+router.get('/1/:startDate/:endDate', withApiAuth, async (req, res) => {  /// CHANGE /1/ for :id
     try {
       const startDate = new Date(req.params.startDate);
       const endDate = new Date(req.params.endDate);
@@ -65,7 +65,10 @@ router.get('/1/:startDate/:endDate', async (req, res) => {  /// CHANGE /1/ for :
               payment_date: {[Op.between]: [startDate, endDate]}
           },
           include : {
-          model:Bill
+            model: Bill,
+            where: {
+              user_id: req.session.user_id
+            }
           },
           // // include: {
           // //   model: User,

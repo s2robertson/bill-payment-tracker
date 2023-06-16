@@ -3,7 +3,8 @@ module.exports = {
     if (!date) {
       return ""; 
     }
-    return date.toLocaleDateString();
+    let d = typeof date == 'string' ? new Date(date) : date;
+    return d.toLocaleDateString();
   },
 
   format_date_iso(date) {

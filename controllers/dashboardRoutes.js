@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { User, Bill, Payment } = require('../models');
-const withAuth = require('../utils/auth');
+const { withPageAuth } = require('../utils/auth');
 
 // home/login
 router.get('/', (req, res) => {
@@ -59,11 +59,11 @@ router.get('/dashboard', async (req, res) => {
   }
 });
 
-router.get('/bill/new', withAuth, (req, res) => {
+router.get('/bill/new', withPageAuth, (req, res) => {
   res.render('editBill');
 });
   
-router.get('/bill/:id', withAuth, async (req, res) => {
+router.get('/bill/:id', withPageAuth, async (req, res) => {
   try {
     const billData = await Bill.findByPk(req.params.id, {
       include: [
