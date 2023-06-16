@@ -28,7 +28,7 @@ loginSubmitButton.addEventListener('click', async (e) => {
         });
         if (!result.ok) {
             const { message } = await result.json();
-            loginFeedbackEl.textContent
+            loginFeedbackEl.textContent = message;
         } else {
             location.assign('/dashboard');
         }
