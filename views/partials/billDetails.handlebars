@@ -13,8 +13,12 @@
         {{/each}}
     </ol>
 {{/if}}
-<button type="button" class="btn btn-success" 
-    data-bill-id="{{id}}"
+<button type="button" class="btn btn-success mt-3" 
+    data-payment-bill-id="{{id}}"
     data-description="{{description}}"
     data-due-date="{{due_date}}"
 >Add a payment</button>
+<button type="button" class="btn btn-success mt-3"
+    data-reminder-bill-id="{{id}}"
+    data-due-date="{{due_date}}"
+>Set a reminder</button>

@@ -4,7 +4,7 @@ const paymentFeedbackEl = document.getElementById('paymentFormFeedback');
 const paymentSubmitButton = document.getElementById('paymentSubmitButton');
 const billIdHiddenInput = document.getElementById('billIdHidden');
 
-let modalOpenButton;
+let paymentModalOpenButton;
 
 paymentSubmitButton.addEventListener('click', async (e) => {
     e.preventDefault();
@@ -31,7 +31,7 @@ paymentSubmitButton.addEventListener('click', async (e) => {
             paymentFeedbackEl.textContent = 'Saving payment failed';
         } else {
             const payment = await result.json();
-            modalOpenButton.previousElementSibling.append(buildListItemForPayment(payment));
+            paymentModalOpenButton.previousElementSibling.append(buildListItemForPayment(payment));
             makePaymentModal.hide();
         }
     } catch (err) {
@@ -55,13 +55,13 @@ function buildListItemForPayment(payment) {
 }
 
 const makePaymentBillInfoEl = document.getElementById('makePaymentBillInfo');
-const launchButtons = document.querySelectorAll('button[data-bill-id]');
-launchButtons.forEach(button => {
+const paymentModalLaunchButtons = document.querySelectorAll('button[data-payment-bill-id]');
+paymentModalLaunchButtons.forEach(button => {
     button.addEventListener('click', () => {
-        modalOpenButton = button;
+        paymentModalOpenButton = button;
         const dueDate = new Date(button.dataset.dueDate)
         makePaymentBillInfoEl.textContent = `${button.dataset.description}, due on ${dueDate.toLocaleDateString()}`
-        billIdHiddenInput.value = button.dataset.billId;
+        billIdHiddenInput.value = button.dataset.paymentBillId;
         makePaymentModal.show();
     })
 })
