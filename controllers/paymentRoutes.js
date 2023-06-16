@@ -58,14 +58,14 @@ const {Op} = require('sequelize');
 
 
 //  id = req.session.id to replace the 1 in the url ////
-  router.get('/query/1/:startDate/:endDate', withPageAuth, async (req, res) => {
+  router.get('/query/:id/:startDate/:endDate', withPageAuth, async (req, res) => {
     try {
       const startDate = new Date(req.params.startDate);
       const endDate = new Date(req.params.endDate);
       if (!startDate || !endDate) {
         return res.status(400).json({ error: 'Invalid date range' });
       }
-      // const id: req.session.id
+      const id = req.session.id;
       
       const dbPaymentData = await Payment.findAll({
         where: {

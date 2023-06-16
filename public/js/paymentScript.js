@@ -46,8 +46,8 @@ dateBtn.addEventListener('click', (e) => {
   const startDate = startD.value.trim();
   const endDate = endD.value.trim();
 
-  // ****const id = req.session.id to replace the 1 in the URL
-  const url = `/query/1/${startDate}/${endDate}`;
+  const id = req.session.id   //to replace the 1 in the URL
+  const url = `/query/${id}/${startDate}/${endDate}`;
 
   window.location.href = url;
 
