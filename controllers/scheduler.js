@@ -75,8 +75,16 @@ async function sendReminder(reminderId) {
     }
 }
 
-module.exports.scheduleReminder = async function(bill_id, scheduled_date) {
+module.exports.scheduleReminder = async function(user_id, bill_id, scheduled_date) {
     try {
+        const bill = await Bill.findByPk(bill_id, {
+            where: {
+                user_id
+            }
+        });
+        if (!bill) {
+            return null;
+        }
         const reminder = await Reminder.create({ bill_id, scheduled_date });
         schedule.scheduleJob(reminder.scheduled_date, () => sendReminder(reminder.id));
         return reminder;

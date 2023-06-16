@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const {User}  = require('../../models');
-const withAuth = require('../../utils/auth');
+const { withApiAuth } = require('../../utils/auth');
 
 router.get('/', async (req, res) => {
     try {
@@ -45,7 +45,7 @@ router.post('/', async (req, res) => {
 });
 
 
-router.put('/:id', withAuth, async (req, res) => {
+router.put('/:id', withApiAuth, async (req, res) => {
     try {                                         /// maybe  before try if (req.session) 
         const dbUserData = await User.update(
             {
