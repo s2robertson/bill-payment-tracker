@@ -34,6 +34,8 @@ router.post('/', async (req, res) => {
                 email: req.body.email,
                 password: req.body.password
             });
+            req.session.user_id = dbUserData.id;
+            req.session.logged_in = true;
             res.json(dbUserData);
         } catch (err) {
             console.log(err);
