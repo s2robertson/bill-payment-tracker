@@ -1,15 +1,20 @@
 
-<div class="col-md-9 col-lg-8 col-xl-7 col-xxl-6" id="paymentFilterContainer">
-   <div class="col-md-9 col-lg-8 col-xl-7 col-xxl-6">
-      <h2 id="picker-date">Payment History</h2>
-      {{#each payments}}
-          <div class="col">
-            <p>Your last payment for {{bill.description}} was for ${{this.paid_amount}} on {{ this.payment_date}}</p>
-          </div>
-      {{/each}}
+<div class="list-group1">
+  <div class="col-md-9 col-lg-8 col-xl-7 col-xxl-6 payment-box">
+      <div class="g-col-6 h23">
+        <h2 class="picker-d" >Payment History</h2>
+        <h3 id="picker-date" class="picker-d"></h3>
+      </div>
+        {{#each payments}}
+            <div class="col">
+              <p class="p-up-payments">Your last payment for {{bill.description}} was for ${{this.paid_amount}} on {{ this.payment_date}}</p>
+            </div>
+        {{/each}}
+      
+        <button type="button" class="btn btn-success">Add a new payment</button>
     </div>
-      <button type="button" class="btn btn-success">Add a new payment</button>
   </div>
+</div>
 
 
 
