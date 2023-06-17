@@ -1,12 +1,14 @@
 module.exports = {
   format_date: (date) => {
     if (!date) {
-      return ""; 
+      return "";
     }
-    let d = typeof date == 'string' ? new Date(date) : date;
-    return d.toLocaleDateString();
+    let d = typeof date === 'string' ? new Date(date) : date;
+    let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    return d.toLocaleDateString(undefined, options);
   },
 
+  
   format_date_iso(date) {
     if (!date) {
       return '';

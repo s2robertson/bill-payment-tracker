@@ -50,6 +50,11 @@ body {
     border-radius: 5px;
     
   }
+
+  .container-payments{
+    display: flex;
+    justify-content: center;
+  }
   
   .p-4{
     padding: 0!important;
@@ -176,7 +181,7 @@ body {
     
   }
 
-  .list-group{
+  .list-group {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -224,7 +229,30 @@ body {
     flex-wrap: wrap;
   }
 
-  .p-4{
+  /* .p-4{
     display: flex;
     justify-content: center;
+  } */
+
+  .btn-set-add {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .btn-success {
+    margin: 5px;
+  }
+
+
+  .list-group1 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    text-align: center;
+}
+  .p-up-payments{
+  background-color: var(--color-box);
+  padding: 5px;
   }
