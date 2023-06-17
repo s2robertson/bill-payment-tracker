@@ -1,5 +1,4 @@
 <div class="container-payments">
-<div class="col-md-9 col-lg-8 col-xl-7 col-xxl-6 list-group1">
   <div class="filter-box">
     <form class="form-filter">
       <label for="from">From:</label>
@@ -11,35 +10,33 @@
       <button type="button" class="btn btn-success" id="dateBtn">Search</button>
     </div>
   </div>
-
-  <div class="g-col-6 payments-box">
-    <h2>Upcoming payments</h2>
-    {{#each payments}}
-    <div class="col">
-      <p class="p-up-payments">{{bill.description}} has an upcoming payment for ${{bill.total_due}} on {{format_date bill.due_date}}</p>
-    </div>
-    {{else}}
-    <p>No data</p>
-    {{/each}}
-    <div>
-      <button type="button" class="btn btn-success">Add a new bill</button>
-    </div>
-  </div>
-
-  <div class="col-md-9 col-lg-8 col-xl-7 col-xxl-6 payments-box">
-    <div class="g-col-6">
-      <h2>Payment History</h2>
-      {{#each payments}}
-      <div class="col">
-        <p>Your last payment for {{bill.description}} was for ${{this.paid_amount}} on {{this.payment_date}}</p>
+  <div class="col-md-9 col-lg-8 col-xl-7 col-xxl-6 list-group1">
+    <div class="payments-box1">
+      <div class="g-col-6">
+        <h2>Upcoming payments</h2>
+        {{#each payments}}
+        <div class="col list-group1">
+          <p class="p-up-payments">{{bill.description}} has an upcoming payment for ${{bill.total_due}} on {{format_date bill.due_date}}</p>
+        </div>
+        {{/each}}
+        <div>
+          <button type="button" class="btn btn-success">Add a new bill</button>
+        </div>
       </div>
-      {{/each}}
     </div>
+  
+  <div class="g-col-6 payments-box2">
+    <h2>Payment History</h2>
+    {{#each payments}}
+    <div class="col list-group1">
+      <p class="p-up-payments">Your last payment for {{bill.description}} was for ${{this.paid_amount}} on {{this.payment_date}}</p>
+    </div>
+    {{/each}}
     <div>
       <button type="button" class="btn btn-success">Add a new payment</button>
     </div>
   </div>
-</div>
+  </div>
 </div>
 
 

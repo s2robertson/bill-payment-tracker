@@ -53,7 +53,9 @@ body {
 
   .container-payments{
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
   }
   
   .p-4{
@@ -249,10 +251,20 @@ body {
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     text-align: center;
 }
   .p-up-payments{
   background-color: var(--color-box);
   padding: 5px;
+  font-size: 17px;
+  width: 350%;
+  }
+
+  .payments-box1 {
+    margin-right: 150px;
+  }
+
+  .payments-box2 {
+    margin-left: 150px;
   }
