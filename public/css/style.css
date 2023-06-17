@@ -93,6 +93,10 @@ body {
     
   }
   
+  h5 {
+    font-style: oblique;
+    text-decoration:underline
+  }
   nav {
     display: flex;
     margin: 5px;
@@ -167,6 +171,9 @@ body {
     border-radius: 5px;
   } */
 
+  #logoutButton{
+    background-color: rgb(237, 106, 76)!important;
+  }
   form {
     width: 80%;
     margin: 0 auto;
@@ -233,7 +240,9 @@ body {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
+    margin-bottom: 30px;
   }
+
 
   .list-group-item {
     background-color: var(--color-box)

@@ -78,7 +78,10 @@ toUpperCase: (text) => {
 return text.toUpperCase()
 },
 
+
 }
+
+
 
 
 

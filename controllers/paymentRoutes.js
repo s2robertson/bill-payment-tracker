@@ -15,6 +15,12 @@ const {Op} = require('sequelize');
           {
             model: Bill,
             attributes: ['id', 'description', 'total_due', 'user_id', 'due_date'],
+            include: [
+              {
+                model: User,
+      
+              }
+            ],
             where: {
               user_id: req.session.user_id
             }
@@ -73,6 +79,9 @@ const {Op} = require('sequelize');
         },
         include : {
           model: Bill,
+            include: {
+              model:User,
+            },
           where: {
             user_id: req.session.user_id
           }
