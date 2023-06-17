@@ -12,3 +12,10 @@ function getURLPortion() {
 
   displayDate.innerHTML= `Period of ${urlPortion} `
 
+
+
+  const addPaymentBtn = document.getElementById('new-payment2');
+
+  addPaymentBtn.addEventListener('click', function() {
+    window.location.href = '/dashboard';
+  });
