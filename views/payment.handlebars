@@ -1,11 +1,15 @@
 <div class="col-md-9 col-lg-8 col-xl-7 col-xxl-6">
-  <div>
-  <label for="from">From</label>
-  <input type="text" id="from" name="from">
-  <label for="to">to</label>
-  <input type="text" id="to" name="to">
-  <button type="button" class="btn btn-success" id="dateBtn">Search</button>
-
+  
+  <div class="filter-box">
+    <form class="form-filter">
+        <label for="from">From: </label>
+        <input type="text" id="from" name="from" class="form-input-filter">
+        <label for="to">to: </label>
+        <input type="text" id="to" name="to" class="form-input-filter">
+    </form>
+    <div class="btn-filter-box">
+      <button type="button" class="btn btn-success" id="dateBtn">Search</button>
+    </div>
   </div>
   <div class="g-col-6">
     <h2>Upcoming payments</h2>
