@@ -11,9 +11,9 @@
 <ol id="paymentList{{id}}" class="list-group">
     {{#each payments}}
         <li class="list-group-item">
-            <p>Amount paid: ${{paid_amount}}</p>
+            <p id="amountPaidPara{{id}}">Amount paid: ${{paid_amount}}</p>
             <p>Paid on {{format_date payment_date}}</p>
-            {{!-- <button type="button" class="btn d-block mt-3">Edit Amount</button> --}}
+            <button type="button" class="btn d-block mt-3" data-bill-info-id="billInfo{{../id}}" data-payment-info-id="paymentInfo{{id}}">Edit Amount</button>
             <input id="paymentInfo{{id}}" type="hidden" value="{{to_json this}}">
         </li>
     {{/each}}

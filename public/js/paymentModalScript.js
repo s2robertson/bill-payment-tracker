@@ -21,9 +21,20 @@ paymentSubmitButton.addEventListener('click', async (e) => {
         return;
     }
     paymentFeedbackEl.textContent = '';
+
+    let path = '/api/payments';
+    let method = 'POST';
+    let paymentDataEl;
+    let paymentData;
+    if (paymentModalOpenButton.dataset.paymentInfoId) {
+        paymentDataEl = document.getElementById(paymentModalOpenButton.dataset.paymentInfoId);
+        paymentData = JSON.parse(paymentDataEl.value);
+        path = `/api/payments/${paymentData.id}`;
+        method = 'PUT';
+    }
     try {
-        const result = await fetch('/api/payments', {
-            method: 'POST',
+        const result = await fetch(path, {
+            method,
             body: JSON.stringify({ bill_id, paid_amount }),
             headers: { 'Content-Type': 'application/json' }
         });
@@ -32,10 +43,17 @@ paymentSubmitButton.addEventListener('click', async (e) => {
         } else {
             const payment = await result.json();
             try {
-                const billDataEl = document.getElementById(paymentModalOpenButton.dataset.billInfoId);
-                const billData = JSON.parse(billDataEl.value);
-                const paymentListEl = document.getElementById(`paymentList${billData.id}`);
-                paymentListEl.append(buildListItemForPayment(payment));
+                if (paymentDataEl) {
+                    const outputEl = document.getElementById(`amountPaidPara${paymentData.id}`);
+                    outputEl.textContent = `Amount paid: $${paid_amount}`;
+                    paymentData.paid_amount = paid_amount;
+                    paymentDataEl.value = JSON.stringify(paymentData);
+                } else {
+                    const billDataEl = document.getElementById(paymentModalOpenButton.dataset.billInfoId);
+                    const billData = JSON.parse(billDataEl.value);
+                    const paymentListEl = document.getElementById(`paymentList${billData.id}`);
+                    paymentListEl.append(buildListItemForPayment(payment));
+                }
             } catch(err) {
                 console.log(err);
             } finally {
@@ -74,6 +92,13 @@ paymentModalLaunchButtons.forEach(button => {
         try {
             const billDataEl = document.getElementById(button.dataset.billInfoId);
             const billData = JSON.parse(billDataEl.value);
+
+            if (button.dataset.paymentInfoId) {
+                const paymentDataEl = document.getElementById(button.dataset.paymentInfoId);
+                const paymentData = JSON.parse(paymentDataEl.value);
+                paymentAmountInput.value = paymentData.paid_amount;
+            }
+
             const dueDate = new Date(billData.due_date)
             makePaymentBillInfoEl.textContent = `${billData.description}, due on ${dueDate.toLocaleDateString()}`
             billIdHiddenInput.value = billData.id;
