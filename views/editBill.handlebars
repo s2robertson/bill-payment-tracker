@@ -1,3 +1,5 @@
+
+{{#if bill}}<h4 id="id-user"> Good {{timeOfDays}}, {{toUpperCase bill.user.username}} {{/if}}</h4>
 <h2>{{#if bill}}Edit{{else}}Create{{/if}} Bill</h2>
 <input id="billIdHidden" type="hidden" value="{{#if bill}}{{bill.id}}{{/if}}">
 <input id="submitPathHidden" type="hidden" value="{{#if bill}}/api/bills/{{bill.id}}{{else}}/api/bills{{/if}}">

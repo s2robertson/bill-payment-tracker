@@ -69,7 +69,7 @@ router.get('/bill/:id', withPageAuth, async (req, res) => {
       include: [
         {
           model: User,
-          attributes: ['id'],
+          attributes: ['id', 'username'],
           where: {
             id: req.session.user_id
           }
@@ -82,6 +82,7 @@ router.get('/bill/:id', withPageAuth, async (req, res) => {
 
     const bill = billData.get({ plain: true });
     res.render('editBill', { bill }); ///logged_in: true
+    console.log(bill)
   } catch (err) {
     console.log(err);
     res.redirect('/dashboard');
