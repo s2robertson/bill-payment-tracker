@@ -31,8 +31,16 @@ paymentSubmitButton.addEventListener('click', async (e) => {
             paymentFeedbackEl.textContent = 'Saving payment failed';
         } else {
             const payment = await result.json();
-            paymentModalOpenButton.previousElementSibling.append(buildListItemForPayment(payment));
-            makePaymentModal.hide();
+            try {
+                const billDataEl = document.getElementById(paymentModalOpenButton.dataset.billInfoId);
+                const billData = JSON.parse(billDataEl.value);
+                const paymentListEl = document.getElementById(`paymentList${billData.id}`);
+                paymentListEl.append(buildListItemForPayment(payment));
+            } catch(err) {
+                console.log(err);
+            } finally {
+                makePaymentModal.hide();
+            }
         }
     } catch (err) {
         console.log(err);
@@ -49,19 +57,29 @@ function buildListItemForPayment(payment) {
     const paidOnEl = document.createElement('p');
     const paidOnDate = new Date(payment.payment_date);
     paidOnEl.textContent = `Paid on ${paidOnDate.toLocaleDateString()}`;
+    const paymentInfoHidden = document.createElement('input');
+    paymentInfoHidden.id = `paymentInfo${payment.id}`;
+    paymentInfoHidden.type = 'hidden';
+    paymentInfoHidden.value = JSON.stringify(payment);
 
-    base.append(paidAmountEl, paidOnEl);
+    base.append(paidAmountEl, paidOnEl, paymentInfoHidden);
     return base;
 }
 
 const makePaymentBillInfoEl = document.getElementById('makePaymentBillInfo');
-const paymentModalLaunchButtons = document.querySelectorAll('button[data-payment-bill-id]');
+const paymentModalLaunchButtons = document.querySelectorAll('button[data-bill-info-id]');
 paymentModalLaunchButtons.forEach(button => {
     button.addEventListener('click', () => {
         paymentModalOpenButton = button;
-        const dueDate = new Date(button.dataset.dueDate)
-        makePaymentBillInfoEl.textContent = `${button.dataset.description}, due on ${dueDate.toLocaleDateString()}`
-        billIdHiddenInput.value = button.dataset.paymentBillId;
-        makePaymentModal.show();
+        try {
+            const billDataEl = document.getElementById(button.dataset.billInfoId);
+            const billData = JSON.parse(billDataEl.value);
+            const dueDate = new Date(billData.due_date)
+            makePaymentBillInfoEl.textContent = `${billData.description}, due on ${dueDate.toLocaleDateString()}`
+            billIdHiddenInput.value = billData.id;
+            makePaymentModal.show();
+        } catch (err) {
+            console.log(err);
+        }
     })
 })

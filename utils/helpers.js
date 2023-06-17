@@ -8,13 +8,16 @@ module.exports = {
     return d.toLocaleDateString(undefined, options);
   },
 
-  
   format_date_iso(date) {
     if (!date) {
       return '';
     }
     let d = typeof date == 'string' ? new Date(date) : date;
     return d.toISOString().substring(0, 10);
+  },
+
+  to_json(obj) {
+    return obj ? JSON.stringify(obj) : '';
   },
 
   is_next_month: (date) => {
