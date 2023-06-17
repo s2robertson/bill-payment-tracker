@@ -134,11 +134,11 @@ body {
     font-size: 13px;
   }
 
-  h2 {
+  /* h2 h3{
     color: rgb(35, 35, 74);
     padding: 10px;
     border-radius: 5px;
-  }
+  } */
 
   form {
     width: 80%;
@@ -164,6 +164,7 @@ body {
     margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    cursor: pointer;
   }
 
   h2 {
@@ -187,7 +188,7 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    align-items: center;
+    align-items: flex-start;
     flex-wrap: wrap;
     text-align: center;
   }
@@ -208,7 +209,7 @@ body {
 
   .form-filter {
     background-color: #f2f2f2;
-    padding: 10px 10px 0 10px;
+    padding: 10px 10px 10px 10px;
     display: flex;
     align-items: baseline;
   }
@@ -258,7 +259,7 @@ body {
   background-color: var(--color-box);
   padding: 5px;
   font-size: 17px;
-  width: 350%;
+  width: max-content;
   }
 
   .payments-box1 {
@@ -272,3 +273,56 @@ body {
   #user-id{
     display: none;
   }
+
+  #payment-filter-container {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .picker-d {
+    width: max-content;
+    margin: 0px;
+    background: linear-gradient(to right, #1626FC 20%, #CF480E 78%);
+    -webkit-background-clip: text;
+    -moz-background-clip: text; /* Firefox */
+    -ms-background-clip: text; /* Internet Explorer */
+    -o-background-clip: text; /* Opera */
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+  }
+
+  .input-icon {
+    position: relative;
+  }
+  
+  .input-icon input {
+    padding-right: 30px; /* Adjust this value to make room for the icon */
+  }
+  
+  .input-icon i {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+  }
+
+  #from, #to {
+    margin: 0;
+    padding-bottom: 8px;
+  }
+
+  #to1 {
+    margin-left:5px;
+  }
+  
+  .h23 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+   

@@ -45,11 +45,27 @@ const userId = document.getElementById("user-id").innerText;
 dateBtn.addEventListener('click', (e) => {
   e.preventDefault();
 
-  const startDate = startD.value.trim();
-  const endDate = endD.value.trim();
+  const startDate = new Date(startD.value.trim());
+  const endDate = new Date(endD.value.trim());
+  
+  startDate.setDate(startDate.getDate() - 1);
+  endDate.setDate(endDate.getDate() + 1);
+  
+  const year = startDate.toLocaleString("default", { year: "numeric" });
+  const month = startDate.toLocaleString("default", { month: "2-digit" });
+  const day = startDate.toLocaleString("default", { day: "2-digit" });
+
+  const formatStartDate = year + "-" + month + "-" + day;
+
+  const year2 = endDate.toLocaleString("default", { year: "numeric" });
+  const month2 = endDate.toLocaleString("default", { month: "2-digit" });
+  const day2 = endDate.toLocaleString("default", { day: "2-digit" });
+
+  const formatEndDate = year2 + "-" + month2 + "-" + day2;
+
 
   const id = userId
-  const url = `/query/${id}/${startDate}/${endDate}`;
+  const url = `/query/${id}/${formatStartDate}/${formatEndDate}`;
 
   window.location.href = url;
 

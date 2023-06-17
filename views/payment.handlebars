@@ -1,10 +1,17 @@
+
 <div class="container-payments">
   <div class="filter-box">
     <form class="form-filter">
       <label for="from">From:</label>
-      <input type="text" id="from" name="from" class="form-input-filter">
-      <label for="to">to:</label>
-      <input type="text" id="to" name="to" class="form-input-filter">
+      <div class="input-icon">
+    <input type="text" id="from" name="from" class="form-input-filter">
+    <i class="fas fa-calendar"></i>
+  </div>
+      <label id="to1" for="to">to:</label>
+       <div class="input-icon">
+    <input type="text" id="to" name="to" class="form-input-filter">
+    <i class="fas fa-calendar"></i>
+  </div>
     </form>
     <div class="btn-filter-box">
       <button type="button" class="btn btn-success" id="dateBtn">Search</button>

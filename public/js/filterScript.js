@@ -10,5 +10,5 @@ function getURLPortion() {
   const urlPortion = getURLPortion();
 
 
-  displayDate.innerHTML= `Payment history for the period of ${urlPortion} `
+  displayDate.innerHTML= `Period of ${urlPortion} `
 

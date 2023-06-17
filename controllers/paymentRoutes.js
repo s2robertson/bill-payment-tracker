@@ -65,7 +65,7 @@ const {Op} = require('sequelize');
       if (!startDate || !endDate) {
         return res.status(400).json({ error: 'Invalid date range' });
       }
-      const id = req.session.id;
+      const id = req.session.user_id;
       
       const dbPaymentData = await Payment.findAll({
         where: {
