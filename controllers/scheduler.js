@@ -14,8 +14,8 @@ let transporter;
         const testAccount = await nodemailer.createTestAccount();
         mailUser = testAccount.user;
         mailPassword = testAccount.pass;
-        mailHost = testAccount.smtp;
-        mailPort = 587;
+        mailHost = testAccount.smtp.host;
+        mailPort = testAccount.smtp.port;
     }
     transporter  = nodemailer.createTransport({
         host: mailHost,
