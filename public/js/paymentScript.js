@@ -1,3 +1,4 @@
+// date picker
 $(function() {
   var dateFormat = "yy-mm-dd",
     from = $("#from").datepicker({
@@ -33,14 +34,11 @@ $(function() {
 
 
 
-
+// getting data to render filter payments
 const startD = document.getElementById('from');
 const endD = document.getElementById('to');
 const dateBtn = document.getElementById('dateBtn');
 const userId = document.getElementById("user-id").innerText;
-
-
-
 
 dateBtn.addEventListener('click', (e) => {
   e.preventDefault();
@@ -68,7 +66,15 @@ dateBtn.addEventListener('click', (e) => {
   const url = `/query/${id}/${formatStartDate}/${formatEndDate}`;
 
   window.location.href = url;
-
-  
 });
+
+
+// add a payment
+
+  const addPaymentBtn = document.getElementById('new-payment');
+
+  addPaymentBtn.addEventListener('click', function() {
+    window.location.href = '/dashboard';
+  });
+
 

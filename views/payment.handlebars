@@ -28,7 +28,8 @@
         </div>
         {{/each}}
         <div>
-          <button type="button" class="btn btn-success">Add a new bill</button>
+          <a href="/bill/new" class="btn btn-success mt-3">Add a new bill</a>
+          <a href="/dashboard" class="btn btn-success mt-3">Set a reminder</a>
         </div>
       </div>
     </div>
@@ -41,7 +42,7 @@
     </div>
     {{/each}}
     <div>
-      <button type="button" class="btn btn-success">Add a new payment</button>
+      <button type="button" class="btn btn-success" id="new-payment">Add a new payment</button>
     </div>
   </div>
   </div>
@@ -52,6 +53,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 <script src="/js/paymentScript.js"></script>
+
 
 
 {{!-- https://getbootstrap.com/docs/5.3/layout/css-grid/ --}}

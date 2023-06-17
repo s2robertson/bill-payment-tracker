@@ -29,12 +29,14 @@
             <ul class="navBtn" >
                 <li> <a href="/" class="{{#if user_id}}d-none{{else}}d-block{{/if}}">Home</a></li>
                 {{!-- <li> <a href="/login" class="{{#if user_id}}d-none{{else}}d-block{{/if}}">Login</a></li> --}}
-            </ul>
-       </nav>
+            
+    
 
-        <a href="/dashboard" class="btn {{#if user_id}}d-block{{else}}d-none{{/if}}">Home</a>
-         <a href="/payments" class="btn {{#if user_id}}d-block{{else}}d-none{{/if}}">Payments</a>
-        <button id="logoutButton" class="btn {{#if user_id}}d-block{{else}}d-none{{/if}}">Log Out</button>
+                <a href="/dashboard" class="btn {{#if user_id}}d-block{{else}}d-none{{/if}}">Home</a>
+                <a href="/payments" class="btn {{#if user_id}}d-block{{else}}d-none{{/if}}">Payments</a>
+                <button id="logoutButton" class="btn {{#if user_id}}d-block{{else}}d-none{{/if}}">Log Out</button>
+            </ul>
+        </nav>
     </header>
     <main class="container p-4">
         {{{body}}}
