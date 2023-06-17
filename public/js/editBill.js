@@ -1,3 +1,4 @@
+const billIdHidden = document.getElementById('billIdHidden');
 const submitPathHidden = document.getElementById('submitPathHidden');
 const submitMethodHidden = document.getElementById('submitMethodHidden');
 const billDescriptionInput = document.getElementById('billDescription');
@@ -6,6 +7,10 @@ const totalDueInput = document.getElementById('totalDue');
 const minimumDueInput = document.getElementById('minimumDue');
 const billFormFeedbackEl = document.getElementById('billFormFeedback');
 const billSubmitButton = document.getElementById('billSubmitButton');
+const billDeleteButton = document.getElementById('billDeleteButton');
+const confirmDeleteDiv = document.getElementById('confirmDeleteDiv');
+const confirmDeleteText = document.getElementById('confirmDeleteText');
+const confirmDeleteButton = document.getElementById('confirmDeleteButton');
 
 billSubmitButton.addEventListener('click', async (e) => {
     e.preventDefault();
@@ -52,3 +57,27 @@ billSubmitButton.addEventListener('click', async (e) => {
         billFormFeedbackEl.textContent = 'Saving bill failed.';
     }
 });
+
+billDeleteButton.addEventListener('click', () => {
+    confirmDeleteDiv.classList.remove('d-none');
+});
+
+confirmDeleteButton.addEventListener('click', async () => {
+    const id = billIdHidden.value;
+    try {
+        const result = await fetch(`/api/bills/${id}`, {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' }
+        });
+        if (!result.ok) {
+            let { message } = await result.json();
+            confirmDeleteText.textContent = message || 'Deleting bill failed.';
+        } else {
+            location.assign('/dashboard');
+        }
+    } catch (err) {
+        console.log(err);
+        confirmDeleteText.textContent = 'Deleting bill failed.';
+    }
+
+})
