@@ -37,6 +37,8 @@ $(function() {
 const startD = document.getElementById('from');
 const endD = document.getElementById('to');
 const dateBtn = document.getElementById('dateBtn');
+const userId = document.getElementById("user-id").innerText;
+
 
 
 
@@ -46,7 +48,7 @@ dateBtn.addEventListener('click', (e) => {
   const startDate = startD.value.trim();
   const endDate = endD.value.trim();
 
-  const id = req.session.id   //to replace the 1 in the URL
+  const id = userId
   const url = `/query/${id}/${startDate}/${endDate}`;
 
   window.location.href = url;

@@ -16,7 +16,8 @@
         <h2>Upcoming payments</h2>
         {{#each payments}}
         <div class="col list-group1">
-          <p class="p-up-payments">{{bill.description}} has an upcoming payment for ${{bill.total_due}} on {{format_date bill.due_date}}</p>
+          <p class="p-up-payments">{{bill.description}} has an upcoming payment for ${{bill.total_due}} on {{format_date bill.due_date}} </p>
+          <p id="user-id"> {{bill.user_id}}</p>
         </div>
         {{/each}}
         <div>

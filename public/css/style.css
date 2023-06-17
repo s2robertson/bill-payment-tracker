@@ -268,3 +268,7 @@ body {
   .payments-box2 {
     margin-left: 150px;
   }
+
+  #user-id{
+    display: none;
+  }
