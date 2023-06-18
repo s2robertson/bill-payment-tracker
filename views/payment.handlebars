@@ -1,5 +1,5 @@
 
-<h4 id="id-user"> Good {{timeOfDays}}, {{#with payments.[0].bill.user}}{{toUpperCase username}} {{/with}}</h4>
+{{!-- <h4 id="id-user"> Good {{timeOfDays}}, {{#with payments.[0].bill.user}}{{toUpperCase username}} {{/with}}</h4>   IF NO PAYMENTS - NO DATA--}}
 <div class="container-payments">
   <div class="filter-box">
      
@@ -44,7 +44,7 @@
     </div>
     {{/each}}
     <div>
-      <button type="button" class="btn btn-success" id="new-payment">Add a new payment</button>
+      <a href="/dashboard" type="button" class="btn btn-success" id="new-payment">Add a new payment</a>
     </div>
   </div>
   </div>

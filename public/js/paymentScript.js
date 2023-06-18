@@ -69,12 +69,5 @@ dateBtn.addEventListener('click', (e) => {
 });
 
 
-// add a payment
-
-  const addPaymentBtn = document.getElementById('new-payment');
-
-  addPaymentBtn.addEventListener('click', function() {
-    window.location.href = '/dashboard';
-  });
 
 

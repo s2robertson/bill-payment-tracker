@@ -6,11 +6,15 @@
 <input id="billInfo{{id}}" type="hidden" value="{{to_json this}}">
 <h3>Payments:</h3>
 {{#unless payments}}
-    <p>No recorded payments</p>
+    <ol class="list-group">
+    <li class="list-group-item bills">
+    <p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspNo recorded payments&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</p>
+    </li>
+    </ol>
 {{/unless}}
-<ol id="paymentList{{id}}" class="list-group">
+<ol id="paymentList{{id}}" class="list-group ">
     {{#each payments}}
-        <li class="list-group-item">
+        <li class="list-group-item bills">
             <p id="amountPaidPara{{id}}">Amount paid: ${{paid_amount}}</p>
             <p>Paid on {{format_date payment_date}}</p>
             <button type="button" class="btn d-block mt-3" data-bill-info-id="billInfo{{../id}}" data-payment-info-id="paymentInfo{{id}}">Edit Amount</button>
