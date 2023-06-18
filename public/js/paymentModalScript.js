@@ -4,6 +4,11 @@ const paymentFeedbackEl = document.getElementById('paymentFormFeedback');
 const paymentSubmitButton = document.getElementById('paymentSubmitButton');
 const billIdHiddenInput = document.getElementById('billIdHidden');
 
+const paymentDeleteButton = document.getElementById('paymentDeleteButton');
+const paymentConfirmDeleteDiv = document.getElementById('paymentConfirmDeleteDiv');
+const paymentConfirmDeleteText = document.getElementById('paymentConfirmDeleteText');
+const paymentConfirmDeleteButton = document.getElementById('paymentConfirmDeleteButton');
+
 let paymentModalOpenButton;
 
 paymentSubmitButton.addEventListener('click', async (e) => {
@@ -57,6 +62,8 @@ paymentSubmitButton.addEventListener('click', async (e) => {
             } catch(err) {
                 console.log(err);
             } finally {
+                paymentDeleteButton.classList.add('d-none');
+                confirmDeleteDiv.classList.add('d-none');
                 makePaymentModal.hide();
             }
         }
@@ -97,7 +104,12 @@ paymentModalLaunchButtons.forEach(button => {
                 const paymentDataEl = document.getElementById(button.dataset.paymentInfoId);
                 const paymentData = JSON.parse(paymentDataEl.value);
                 paymentAmountInput.value = paymentData.paid_amount;
+                paymentDeleteButton.classList.remove('d-none');
+                paymentConfirmDeleteText.textContent = 'Warning: Deleting this bill cannot be undone!';
+            } else {
+                paymentDeleteButton.classList.add('d-none');
             }
+            paymentConfirmDeleteDiv.classList.add('d-none');
 
             const dueDate = new Date(billData.due_date)
             makePaymentBillInfoEl.textContent = `${billData.description}, due on ${dueDate.toLocaleDateString()}`
@@ -107,4 +119,32 @@ paymentModalLaunchButtons.forEach(button => {
             console.log(err);
         }
     })
+})
+
+paymentDeleteButton.addEventListener('click', () => {
+    paymentConfirmDeleteDiv.classList.remove('d-none');
+})
+
+paymentConfirmDeleteButton.addEventListener('click', async () => {
+    try {
+        if (!paymentModalOpenButton || !paymentModalOpenButton.dataset.paymentInfoId) {
+            return;
+        }
+        const paymentDataEl = document.getElementById(paymentModalOpenButton.dataset.paymentInfoId);
+        const paymentData = JSON.parse(paymentDataEl.value);
+        const result = await fetch(`/api/payments/${paymentData.id}`, {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' }
+        });
+        if (!result.ok) {
+            const { message } = await result.json();
+            paymentConfirmDeleteText.textContent = message || 'Deleting payment failed.';
+        } else {
+            paymentModalOpenButton.parentElement.remove();
+            makePaymentModal.hide();
+        }
+    } catch (err) {
+        console.log(err);
+        paymentConfirmDeleteText.textContent = 'Deleting payment failed.';
+    }
 })

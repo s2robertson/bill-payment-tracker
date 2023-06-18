@@ -37,7 +37,14 @@
             </div>
           </div>
           <p id="paymentFormFeedback" class="form-text"></p>
-          <button id="paymentSubmitButton" class="btn">Submit</button>
+          <div class="d-flex justify-content-between">
+            <button id="paymentSubmitButton" type="submit" class="btn">Submit</button>
+            <button id="paymentDeleteButton" type="button" class="btn d-none">Delete</button>
+          </div>
+          <div id="paymentConfirmDeleteDiv" class="mt-3 d-none">
+            <p id="paymentConfirmDeleteText">Warning: Deleting this bill cannot be undone!</p>
+            <button id="paymentConfirmDeleteButton" type="button" class="btn">Confirm Delete</button>
+          </div>
         </form>
       </div>
     </div>
