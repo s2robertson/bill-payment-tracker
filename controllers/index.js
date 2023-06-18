@@ -7,6 +7,7 @@ const paymentR = require('./paymentRoutes');
 router.use((req, res, next) => {
     if (req.session.user_id) {
         res.locals.user_id = req.session.user_id;
+        res.locals.username = req.session.username;
     }
     next();
 })
