@@ -4,7 +4,7 @@
 <input id="billIdHidden" type="hidden" value="{{#if bill}}{{bill.id}}{{/if}}">
 <input id="submitPathHidden" type="hidden" value="{{#if bill}}/api/bills/{{bill.id}}{{else}}/api/bills{{/if}}">
 <input id="submitMethodHidden" type="hidden" value="{{#if bill}}PUT{{else}}POST{{/if}}">
-<form>
+<form class="new-bill">
     <div class="mb-3">
         <label for="billDescription" class="form-label">Description:</label>
         <input id="billDescription" type="text" class="form-control" {{#if bill}}value="{{bill.description}}"{{/if}}>
