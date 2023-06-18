@@ -20,23 +20,22 @@
 <body>
     <header class="container d-flex flex-column flex-md-row align-items-center p-4">
          <a href="/dashboard">
-            <img src="images/logo-big.png" alt="Logo" class="logo">
-            
+            <img src="images/logo-big.png" alt="Logo" class="logo">  
         </a>
         <h1 class="flex-grow-1">Payment Tracker</h1>
         
-        <nav >
-            <ul class="navBtn" >
-                {{!-- <li> <a href="/" class="{{#if user_id}}d-none{{else}}d-none{{/if}}">Home</a></li> --}}
-                {{!-- <li> <a href="/login" class="{{#if user_id}}d-none{{else}}d-block{{/if}}">Login</a></li> --}}
-            
-    
-
-                <a href="/dashboard" class="btn {{#if user_id}}d-block{{else}}d-none{{/if}}">Home</a>
+        <nav class="dropdown {{#if user_id}}d-block{{else}}d-none{{/if}}">
+            <button  class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Menu
+            </button>
+            <ul class="dropdown-menu" style="">
+               <a href="/dashboard" class="btn {{#if user_id}}d-block{{else}}d-none{{/if}}">Home</a>
+               <a href="/bill/new" class="btn {{#if user_id}}d-block{{else}}d-none{{/if}}">Add a bill</a>
                 <a href="/payments" class="btn {{#if user_id}}d-block{{else}}d-none{{/if}}">Payments</a>
                 <button id="logoutButton" class="btn {{#if user_id}}d-block{{else}}d-none{{/if}}">Log Out</button>
             </ul>
         </nav>
+
     </header>
     <main class="container p-4">
         {{{body}}}
@@ -44,3 +43,4 @@
     <script src="/js/logoutScript.js"></script>
 </body>
 </html>
+
