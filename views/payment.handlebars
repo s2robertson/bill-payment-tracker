@@ -1,5 +1,7 @@
 
-{{!-- <h4 id="id-user"> Good {{timeOfDays}}, {{#with payments.[0].bill.user}}{{toUpperCase username}} {{/with}}</h4>   IF NO PAYMENTS - NO DATA--}}
+<h4 id="id-user"> Good {{timeOfDays}}, {{toUpperCase username}} </h4> 
+ <p id="user-id"> {{user_id}}</p> {{!--  to get ID to fetch filter. Display none from CSS --}}
+
 <div class="container-payments">
   <div class="filter-box">
      
@@ -26,7 +28,7 @@
         {{#each payments}}
         <div class="col list-group1">
           <p class="p-up-payments">{{bill.description}} has an upcoming payment for ${{bill.total_due}} on {{format_date bill.due_date}} </p>
-          <p id="user-id"> {{bill.user_id}}</p>
+         
         </div>
         {{/each}}
         <div>
@@ -35,7 +37,7 @@
         </div>
       </div>
     </div>
-  
+   
   <div class="g-col-6 payments-box2">
     <h2>Payment History</h2>
     {{#each payments}}
