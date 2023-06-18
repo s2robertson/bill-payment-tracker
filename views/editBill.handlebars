@@ -1,6 +1,7 @@
 
 {{#if bill}}<h4 id="id-user"> Good {{timeOfDays}}, {{toUpperCase bill.user.username}} {{/if}}</h4>
 <h2>{{#if bill}}Edit{{else}}Create{{/if}} Bill</h2>
+<input id="billIdHidden" type="hidden" value="{{#if bill}}{{bill.id}}{{/if}}">
 <input id="submitPathHidden" type="hidden" value="{{#if bill}}/api/bills/{{bill.id}}{{else}}/api/bills{{/if}}">
 <input id="submitMethodHidden" type="hidden" value="{{#if bill}}PUT{{else}}POST{{/if}}">
 <form>
@@ -27,6 +28,13 @@
         </div>
     </div>
     <p id="billFormFeedback" class="form-text"></p>
-    <button id="billSubmitButton" type="submit" class="btn btn-success">Submit</button>
+    <div class="d-flex justify-content-between">
+        <button id="billSubmitButton" type="submit" class="btn">Submit</button>
+        <button id="billDeleteButton" type="button" class="btn {{#unless bill}}d-none{{/unless}}">Delete</button>
+    </div>
+    <div id="confirmDeleteDiv" class="mt-3 d-none">
+        <p id="confirmDeleteText">Warning: Deleting this bill cannot be undone!</p>
+        <button id="confirmDeleteButton" type="button" class="btn">Confirm Delete</button>
+    </div>
 </form>
 <script src="/js/editBill.js"></script>

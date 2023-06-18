@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const {Bill}  = require('../../models');
 const { withApiAuth } = require('../../utils/auth');
+const handleSequelizeError = require('../../utils/sequelizeErrorHandler');
 
 router.get('/', withApiAuth, async (req, res) => {
     try {
@@ -43,7 +44,12 @@ router.post('/', withApiAuth, async (req, res) => {
         res.json(dbBillData);
     } catch (err) {
         console.log(err);
-        res.status(400).json(err);
+        const message = handleSequelizeError(err);
+        if (message) {
+            res.status(400).json({ message });
+        } else {
+            res.status(500).json(err);
+        }
     }
 });
 
@@ -71,11 +77,38 @@ router.put('/:id', withApiAuth, async (req, res) => { //no WithAuth to test
         res.json(dbBillData);
     } catch (err) {
         console.log(err);
-        res.status(500).json(err);
+        const message = handleSequelizeError(err);
+        if (message) {
+            res.status(400).json({ message });
+        } else {
+            res.status(500).json(err);
+        }
     }
 });
 
-
+router.delete('/:id', withApiAuth, async (req, res) => {
+    try {
+        const rowsDeleted = await Bill.destroy({
+            where: {
+                id: req.params.id,
+                user_id: req.session.user_id
+            }
+        });
+        if (rowsDeleted === 0) {
+            res.status(404).json({ message: 'No bill found with this id' });
+        } else {
+            res.json(rowsDeleted);
+        }
+    } catch (err) {
+        console.log(err);
+        const message = handleSequelizeError(err);
+        if (message) {
+            res.status(400).json({ message });
+        } else {
+            res.status(500).json(err);
+        }
+    }
+})
 
   
   module.exports = router;

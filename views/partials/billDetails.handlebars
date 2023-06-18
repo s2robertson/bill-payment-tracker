@@ -2,28 +2,25 @@
 <p>Due on {{format_date due_date}}</p>
 <p>Total due: ${{total_due}}</p>
 <p>Minimum due: ${{minimum_due}}</p>
-<a href="/bill/{{id}}" class="btn btn-success mb-3" id="edit-btn">Edit Bill</a>
-{{#if payments}}
-    <h3>Payments:</h3>
-    <ol class="list-group">
-        {{#each payments}}
-            <li class="list-group-item">
-                <p>Amount paid: ${{paid_amount}}</p>
-                <p>Paid on {{format_date payment_date}}</p>
-            </li>
-        {{/each}}
-    </ol>
-    {{else}}
-    <h3>Payments:</h3>
+<a href="/bill/{{id}}" class="btn mb-3" id="edit-btn">Edit Bill</a>
+<input id="billInfo{{id}}" type="hidden" value="{{to_json this}}">
+<h3>Payments:</h3>
+{{#unless payments}}
     <p>No recorded payments</p>
-{{/if}}
+{{/unless}}
+<ol id="paymentList{{id}}" class="list-group">
+    {{#each payments}}
+        <li class="list-group-item">
+            <p id="amountPaidPara{{id}}">Amount paid: ${{paid_amount}}</p>
+            <p>Paid on {{format_date payment_date}}</p>
+            <button type="button" class="btn d-block mt-3" data-bill-info-id="billInfo{{../id}}" data-payment-info-id="paymentInfo{{id}}">Edit Amount</button>
+            <input id="paymentInfo{{id}}" type="hidden" value="{{to_json this}}">
+        </li>
+    {{/each}}
+</ol>
 <div class="btn-set-add">
-<button type="button" class="btn btn-success d-block mt-3" 
-    data-payment-bill-id="{{id}}"
-    data-description="{{description}}"
-    data-due-date="{{due_date}}"
->Add a payment</button>
-<button type="button" class="btn btn-success d-block mt-3"
+<button type="button" class="btn d-block mt-3" data-bill-info-id="billInfo{{id}}">Add a payment</button>
+<button type="button" class="btn d-block mt-3"
     data-reminder-bill-id="{{id}}"
     data-due-date="{{due_date}}"
 >Set a reminder</button>

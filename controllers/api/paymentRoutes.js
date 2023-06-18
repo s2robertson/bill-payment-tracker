@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { Payment, Bill } = require('../../models');
 const { withApiAuth } = require('../../utils/auth');
-const Sequelize = require('sequelize');
+const handleSequelizeError = require('../../utils/sequelizeErrorHandler');
 
 router.get('/', withApiAuth, async (req, res) => {
   try {
@@ -62,7 +62,41 @@ router.post('/', withApiAuth, async (req, res) => {    //no WithAuth to test
     res.json(dbPaymentData);
   } catch (err) {
     console.log(err);
-    res.status(400).json(err);
+    const message = handleSequelizeError(err);
+    if (message) {
+      res.status(400).json({ message });
+    } else {
+      res.status(500).json(err);
+    }
+  }
+});
+
+
+router.put('/:id', withApiAuth, async (req, res) => {
+  try {
+    const payment = await Payment.findByPk(req.params.id, {
+      include: {
+        model: Bill,
+        where: {
+          user_id: req.session.user_id
+        }
+      }
+    });
+    if (!payment) {
+      return res.status(403).json({ message: 'Invalid payment id' });
+    }
+
+    payment.paid_amount = req.body.paid_amount;
+    await payment.save();
+    res.json(payment);
+  } catch (err) {
+    console.log(err);
+    const message = handleSequelizeError(err);
+    if (message) {
+      res.status(400).json({ message });
+    } else {
+      res.status(500).json(err);
+    }
   }
 });
 
@@ -90,7 +124,12 @@ router.delete('/:id', withApiAuth, async (req, res) => { //no WithAuth to test
     res.json(dbPostData);
   } catch (err) {
     console.log(err);
-    res.status(500).json(err);
+    const message = handleSequelizeError(err);
+    if (message) {
+      res.status(400).json({ message });
+    } else {
+      res.status(500).json(err);
+    }
   }
 });
 
