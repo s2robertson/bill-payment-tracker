@@ -435,6 +435,17 @@ body {
   .list-group-item{
     margin: 10px 20px 0px 20px;
   }
+
+  .filter-box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+  }
+
+  .p-up-payments{
+    width: 80%;
+  }
   }
 
   
