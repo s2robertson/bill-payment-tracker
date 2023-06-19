@@ -212,6 +212,7 @@ body {
       display: flex;
       flex-direction: column;
       align-items: center;
+     
   }
 
   .new-bill {
@@ -241,6 +242,7 @@ body {
     align-items: stretch;
     flex-wrap: wrap;
     text-align: center;
+   
   }
 
   .py-3 {
@@ -265,8 +267,19 @@ body {
 
 
   .list-group-item {
-    background-color: var(--color-box)
+    background-color: var(--color-box);
+    border-bottom-right-radius: inherit;
+    border-bottom-left-radius: inherit;
   }
+
+  .list-group-item+.list-group-item {
+    border-width: 0.741px;
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+    border-bottom-right-radius: inherit;
+    border-bottom-left-radius: inherit;
+  }
+
 
   .form-filter {
     background-color: #f2f2f2;
@@ -303,6 +316,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
+    align-items: center;
   }
 
   .btn-success {
@@ -392,6 +406,10 @@ body {
     align-items: center;
     margin-bottom: 30px;
   }
+
+  
+
+
    
 
   @media (max-width: 750px) {
