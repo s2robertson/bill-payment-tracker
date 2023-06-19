@@ -63,7 +63,7 @@ paymentSubmitButton.addEventListener('click', async (e) => {
                 console.log(err);
             } finally {
                 paymentDeleteButton.classList.add('d-none');
-                paymentConfirmDeleteDiv.classList.add('d-none');
+                confirmDeleteDiv.classList.add('d-none');
                 makePaymentModal.hide();
             }
         }
@@ -86,31 +86,20 @@ function buildListItemForPayment(payment) {
     paymentInfoHidden.id = `paymentInfo${payment.id}`;
     paymentInfoHidden.type = 'hidden';
     paymentInfoHidden.value = JSON.stringify(payment);
-    const editButton = document.createElement('button');
-    editButton.type = 'button';
-    editButton.classList.add('btn', 'd-block', 'mt-3');
-    editButton.textContent = 'Edit Amount';
-    editButton.dataset.billInfoId = `billInfo${payment.bill_id}`;
-    editButton.dataset.paymentInfoId = `paymentInfo${payment.id}`;
-    editButton.addEventListener('click', makePaymentModalOpenListener(editButton));
 
-    base.append(paidAmountEl, paidOnEl, paymentInfoHidden, editButton);
+    base.append(paidAmountEl, paidOnEl, paymentInfoHidden);
     return base;
 }
 
 const makePaymentBillInfoEl = document.getElementById('makePaymentBillInfo');
 const paymentModalLaunchButtons = document.querySelectorAll('button[data-bill-info-id]');
 paymentModalLaunchButtons.forEach(button => {
-    button.addEventListener('click', makePaymentModalOpenListener(button));
-});
-    
-function makePaymentModalOpenListener(button) {
-    return () => {
+    button.addEventListener('click', () => {
         paymentModalOpenButton = button;
         try {
             const billDataEl = document.getElementById(button.dataset.billInfoId);
             const billData = JSON.parse(billDataEl.value);
-    
+
             if (button.dataset.paymentInfoId) {
                 const paymentDataEl = document.getElementById(button.dataset.paymentInfoId);
                 const paymentData = JSON.parse(paymentDataEl.value);
@@ -121,7 +110,7 @@ function makePaymentModalOpenListener(button) {
                 paymentDeleteButton.classList.add('d-none');
             }
             paymentConfirmDeleteDiv.classList.add('d-none');
-    
+
             const dueDate = new Date(billData.due_date)
             makePaymentBillInfoEl.textContent = `${billData.description}, due on ${dueDate.toLocaleDateString()}`
             billIdHiddenInput.value = billData.id;
@@ -129,8 +118,8 @@ function makePaymentModalOpenListener(button) {
         } catch (err) {
             console.log(err);
         }
-    }
-}
+    })
+})
 
 paymentDeleteButton.addEventListener('click', () => {
     paymentConfirmDeleteDiv.classList.remove('d-none');
