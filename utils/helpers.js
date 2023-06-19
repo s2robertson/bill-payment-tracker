@@ -1,4 +1,5 @@
-
+var fs = require('fs');
+const path = require('path');
 
 module.exports = {
   format_date: (date) => {
@@ -83,6 +84,11 @@ toUpperCase: (text) => {
 return text.toUpperCase()
 },
 
+svg: (logo) => {
+  let svgPath = path.join(dirname, `public/images/${logo}.svg`)
+  let content = fs.readFileSync(svgPath, 'utf8');
+      return content;
+}
 
 }
 
