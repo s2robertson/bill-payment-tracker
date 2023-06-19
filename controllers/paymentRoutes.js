@@ -39,6 +39,7 @@ const {Op} = require('sequelize');
 
 
 
+
   router.get('/payments/:id', withPageAuth, async (req, res) => {
     try {
       const dbPaymentData = await Payment.findByPk(req.params.id, {
