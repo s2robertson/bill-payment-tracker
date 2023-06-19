@@ -393,3 +393,22 @@ body {
     margin-bottom: 30px;
   }
    
+
+  @media (max-width: 750px) {
+  .list-group1{
+    flex-direction: column;
+  }
+  .payments-box1 {
+    margin:40px 0px 0px 0px;
+  }
+
+  .payments-box2{
+    margin:60px 0px 0px 0px;
+  }
+
+  #id-user{
+    text-align: center;
+  }
+  }
+
+  
