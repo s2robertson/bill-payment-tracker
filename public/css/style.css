@@ -178,6 +178,10 @@ body {
     border-radius: 5px;
   } */
 
+ .btn-payment-history {
+    display: flex;
+    justify-content: center;
+ }
   #logoutButton{
     background-color: rgb(237, 106, 76)!important;
   }
@@ -348,7 +352,7 @@ body {
   }
 
   .payments-box2 {
-    margin-left: 150px;
+    margin-top: 50px;
   }
 
   #user-id{
