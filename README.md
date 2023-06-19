@@ -21,3 +21,7 @@ You can access the deployed app by visiting the following URL:
 
 ## Credits
 In addition to the packages listed in `package.json`, the bill payment tracker uses [Bootstrap](https://getbootstrap.com/), [Date Range Picker](https://www.npmjs.com/package/daterangepicker), [Font Awesome](https://fontawesome.com/), and [jQueryUI](https://jqueryui.com/).  The email functionality was tested with [Ethereal](https://ethereal.email/).
+
+## Screenshots
+![A screenshot of the login page](./Payment-Tracker-login-ss.png)
+![A screenshot of the dashboard](./Payment-Tracker-bills-ss.png)
