@@ -59,6 +59,8 @@ paymentSubmitButton.addEventListener('click', async (e) => {
                     const paymentListEl = document.getElementById(`paymentList${billData.id}`);
                     paymentListEl.append(buildListItemForPayment(payment));
                 }
+                const paymentListEmpty = document.querySelectorAll('#paymentListEmpty');
+                paymentListEmpty.forEach(el => el.remove());
             } catch(err) {
                 console.log(err);
             } finally {
@@ -78,6 +80,7 @@ function buildListItemForPayment(payment) {
     base.classList.add('list-group-item');
 
     const paidAmountEl = document.createElement('p');
+    paidAmountEl.id = `amountPaidPara${payment.id}`;
     paidAmountEl.textContent = `Amount paid: $${payment.paid_amount}`;
     const paidOnEl = document.createElement('p');
     const paidOnDate = new Date(payment.payment_date);
