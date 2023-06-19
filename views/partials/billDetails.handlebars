@@ -6,10 +6,10 @@
 <input id="billInfo{{id}}" type="hidden" value="{{to_json this}}">
 <h3>Payments:</h3>
 {{#unless payments}}
-    <ol class="list-group">
-    <li class="list-group-item bills">
-    <p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspNo recorded payments&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</p>
-    </li>
+    <ol id="paymentListEmpty" class="list-group">
+        <li class="list-group-item bills">
+            <p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspNo recorded payments&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</p>
+        </li>
     </ol>
 {{/unless}}
 <ol id="paymentList{{id}}" class="list-group ">
