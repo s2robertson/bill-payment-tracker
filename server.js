@@ -13,8 +13,14 @@ const PORT = process.env.PORT || 3001;
 
 const hbs = exphbs.create({ helpers });
 
+const secret = process.env.EXPRESS_SESSION_SECRET;
+if (!secret) {
+  console.log('Missing EXPRESS_SESSION_SECRET');
+  process.exit(1);
+}
+
 const sess = {
-  secret: 'Super secret secret',
+  secret,
   cookie: {
     maxAge: 600000,
     httpOnly: true,
