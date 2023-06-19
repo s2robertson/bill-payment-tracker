@@ -431,6 +431,10 @@ body {
   #id-user{
     text-align: center;
   }
+
+  .list-group-item{
+    margin: 10px 20px 0px 20px;
+  }
   }
 
   
